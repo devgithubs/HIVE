@@ -18,9 +18,12 @@
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="#!">HIVE</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+            <div class="container navbar-right">
+                <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
+                <ul class="navbar-right">
+                    <a class="btn btn-primary" href="#signup">Sign Up</a>
+                    <a class="btn btn-primary" href="#signin">Sign In</a>
+                </ul>
             </div>
         </nav>
         <!-- Masthead-->
@@ -30,7 +33,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Human Resources made simple!</h1>
+                            <h1 class="mb-5">Human Resource Management made simple!</h1>
                             <!-- Signup form-->
                             <form>
                                 <div class="input-group input-group-lg">
@@ -106,14 +109,14 @@
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="../static/assets/img/testimonials-1.jpg" alt="..." />
                             <h5>Margaret E.</h5>
-                            <p class="font-weight-light mb-0">"This is fantastic! As a HR administrator HIVE has allowed me to spend more time adding value to !"</p>
+                            <p class="font-weight-light mb-0">"This is fantastic! As a HR administrator HIVE has allowed me to spend more time adding value in other areas of my job!"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="../static/assets/img/testimonials-2.jpg" alt="..." />
                             <h5>Fred S.</h5>
-                            <p class="font-weight-light mb-0">"HIVE is amazing. As an employee it's super easy to use."</p>
+                            <p class="font-weight-light mb-0">"HIVE is amazing. As an employee it's super easy to use. It takes the headache out of HR tasks"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">

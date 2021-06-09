@@ -22,10 +22,14 @@ app.secret_key = os.environ.get("SECRET_KEY") # required for flask security func
 mongo = PyMongo(app)
 
 @app.route("/")
-@app.route("/dashboard")
-def dashboard():
-    #users = list(mongo.db.users.find())
-    return render_template("dashboard.html")
+@app.route("/index")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
 
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
