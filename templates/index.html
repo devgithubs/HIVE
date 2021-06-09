@@ -16,12 +16,14 @@
         <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
     </head>
     <body>
+        {% block content %}
+        
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container navbar-right">
                 <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
                 <ul class="navbar-right">
-                    <a class="btn btn-primary" href="#signup">Sign Up</a>
+                    <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
                     <a class="btn btn-primary" href="#signin">Sign In</a>
                 </ul>
             </div>
@@ -182,5 +184,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
