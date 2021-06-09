@@ -13,10 +13,19 @@ if os.path.exists("env.py"):
 # create instance of Flask 
 app = Flask(__name__)
 
+# additional configuration 
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")# grabs DB name
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI") # connection string
+app.secret_key = os.environ.get("SECRET_KEY") # required for flask security functionality
+
+# create instance of pymongo and pass it the flask app
+mongo = PyMongo(app)
 
 @app.route("/")
-def hello():
-    return "Hello World"
+@app.route("/index")
+def index():
+    #users = list(mongo.db.users.find())
+    return render_template("index.html")
 
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
