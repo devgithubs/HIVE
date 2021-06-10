@@ -1,7 +1,16 @@
 {% extends "index.html" %}
 
 {% block content %}
-
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container navbar-right">
+            <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
+            <ul class="navbar-right">
+                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+            </ul>
+        </div>
+    </nav>
 
  
     <div id="layoutAuthentication">
@@ -28,7 +37,7 @@
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="password.html">Forgot Password?</a>
-                                            <a class="btn btn-primary" href="index.html">Login</a>
+                                            <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
                                         </div>
                                     </form>
                                 </div>
