@@ -1,7 +1,16 @@
 {% extends "index.html" %}
 
 {% block content %}
-
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container navbar-right">
+            <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
+            <ul class="navbar-right">
+                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+            </ul>
+        </div>
+    </nav>
 
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
@@ -31,7 +40,7 @@
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputEmail" name="inputEmail" type="email" minlength="5"
-                                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="name@example.com" />
+                                            maxlength="15" placeholder="name@example.com" />
                                             <label for="inputEmail">Email address</label>
                                         </div>
                                         <div class="row mb-3">
