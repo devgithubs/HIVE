@@ -16,31 +16,36 @@
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Enter your first name" />
+                                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" minlength="5"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Enter your first name" />
                                                     <label for="inputFirstName">First name</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating">
-                                                    <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Enter your last name" />
+                                                    <input class="form-control" id="inputLastName" name="inputLastName" type="text" minlength="5"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Enter your last name" />
                                                     <label for="inputLastName">Last name</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" name="inputEmail" type="email" placeholder="name@example.com" />
+                                            <input class="form-control" id="inputEmail" name="inputEmail" type="email" minlength="5"
+                                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="name@example.com" />
                                             <label for="inputEmail">Email address</label>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" name="inputPassword" type="password" placeholder="Create a password" />
+                                                    <input class="form-control" id="inputPassword" name="inputPassword" type="password" minlength="5"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Create a password" />
                                                     <label for="inputPassword">Password</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                                    <input class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" type="password" minlength="5"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Confirm password" />
                                                     <label for="inputPasswordConfirm">Confirm Password</label>
                                                 </div>
                                             </div>
