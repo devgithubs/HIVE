@@ -32,6 +32,11 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
+
+
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
