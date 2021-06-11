@@ -5,3 +5,9 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+// A $( document ).ready() block.
+$(document).ready(function() {
+    $(".alert").alert()
+});
+
