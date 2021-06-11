@@ -48,6 +48,8 @@ def register():
 
         session["user"] = request.form.get("inputEmail")
         flash("Registration Successful!")
+        return redirect(url_for("profile", username=session["user"]))
+
     return render_template("register.html")
 
 
@@ -61,7 +63,10 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("inputPassword")):
                     session["user"] = request.form.get("inputEmail").lower()
-                    flash("Welcome {}!".format(existing_user['firstName'].title()))
+                    flash("Welcome {}!".format(
+                        existing_user['firstName'].title()))
+                    return redirect(
+                        url_for("profile", username=session["user"]))
 
             else:
                 flash("Incorrect Username and/or Password")
@@ -72,6 +77,15 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    username = mongo.db.users.find_one(
+        {"_id": "firstName"})
+    print(username)
+    return render_template("profile.html", username=username)
+
 
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
