@@ -31,7 +31,7 @@ def index():
 def register():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"inputEmail": request.form.get("inputEmail").lower()})
+            {"email": request.form.get("inputEmail").lower()})
         
         if existing_user:
             flash("User already exists")
@@ -53,6 +53,24 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("inputEmail").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                existing_user["password"], request.form.get("inputPassword")):
+                    session["user"] = request.form.get("inputEmail").lower()
+                    flash("Welcome {}!".format(existing_user['firstName'].title()))
+
+            else:
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+
+        else:
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
     return render_template("login.html")
 
 
