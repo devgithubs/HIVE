@@ -11,6 +11,17 @@
             </ul>
         </div>
     </nav>
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
 
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
