@@ -10,6 +10,7 @@
             <ul class="navbar-right">
                 <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
                 <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+                <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
             </ul>
         </div>
     </nav>
@@ -98,4 +99,4 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
-        {% endblock %}
+{% endblock %}
