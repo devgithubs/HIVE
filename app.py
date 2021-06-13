@@ -63,9 +63,8 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("inputPassword")):
                     session["user"] = request.form.get("inputEmail").lower()
-                    print(session["user"])
-                    flash("Welcome {}!".format(
-                        existing_user['firstName'].title()))
+                    # flash("Welcome {}!".format(
+                    #     existing_user['firstName'].title()))
                     return redirect(
                         url_for("profile", username=session["user"]))
 
@@ -93,7 +92,7 @@ def profile(username):
 
 @app.route("/logout")
 def logout():
-    flash("You have been logged out")
+    flash("You have successfully logged out")
     session.pop("user")
     return redirect(url_for("login"))
 
