@@ -8,6 +8,8 @@
 
 // A $( document ).ready() block.
 $(document).ready(function() {
-    $(".alert").alert()
+    $(".btn-link").click(function(){
+        $(".collapse").collapse('toggle');
+      });
 });
 
