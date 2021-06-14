@@ -10,6 +10,7 @@
             <ul class="navbar-right">
                 {% if session.user %}
                 <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
                 {% else %}
                 <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
                 <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
