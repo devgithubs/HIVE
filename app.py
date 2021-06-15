@@ -100,7 +100,8 @@ def logout():
 
 @app.route("/add_task")
 def add_task():
-    return render_template("add_task.html")
+    categories = mongo.db.categories.find().sort("category_name",1)
+    return render_template("add_task.html", categories=categories)
 
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
