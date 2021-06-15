@@ -42,10 +42,10 @@
                                     <form method="POST" action="{{ url_for('add_task') }}" class="was-validated mb-3" novalidate>
                                         <div class="mb-3">
                                             <select id="category_name" name="category_name" class="form-select" aria-label="Default select example" required>
-                                                <option value>Task Category</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="" disabled selected>Choose Category</option>
+                                                {% for category in categories %}
+                                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                                {% endfor %}
                                             </select>
                                             <div class="invalid-feedback">
                                                 Please select a Task Category.
