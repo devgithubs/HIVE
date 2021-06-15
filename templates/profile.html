@@ -249,9 +249,14 @@
                   <div class="card">
                     <div class="card-header" id="heading">
                       <h5 class="mb-0">
-                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
-                          {{ task.task_name }}
+                        <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
+                          {{ task.category_name }}
                         </button>
+                          <button class="btn btn-success btn-sm" href="" type="button">Done</button>
+                          <button class="btn btn-primary btn-sm" type="button">Edit</button>
+                          {% if task.is_urgent == "on" %}
+                            <i class="bi bi-exclamation-lg" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
+                          {% endif %}
                       </h5>
                     </div>
                     <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordion">
