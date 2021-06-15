@@ -2031,3 +2031,7 @@
   #navbar .navbar {
     margin-bottom: 20px;
   }
+  .bi-exclamation-lg {
+    font-size: large;
+    color: #fb6340;
+  }
