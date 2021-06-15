@@ -35,11 +35,22 @@
             <main>
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-3">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Task</h3></div>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ url_for('add_task') }}" class="was-validated" novalidate>
+                                    <form method="POST" action="{{ url_for('add_task') }}" class="was-validated mb-3" novalidate>
+                                        <div class="mb-3">
+                                            <select id="category_name" name="category_name" class="form-select" aria-label="Default select example" required>
+                                                <option value>Task Category</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a Task Category.
+                                            </div>
+                                        </div>
                                         <div class="mb-3">
                                             <label for="task_name" class="form-label">Task Name:</label>
                                             <textarea class="form-control is-invalid" id="task_name" placeholder="Task"
@@ -80,7 +91,7 @@
                 </div>
             </main>
         </div>
-        <footer class="footer fixed-bottom bg-light">
+        <footer class="footer bottom bg-light mt-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
