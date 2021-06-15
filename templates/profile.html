@@ -261,6 +261,10 @@
                           <i class="bi bi-exclamation-circle-fill" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
                         {% endif %}
                       </div>
+                      <div class="card-body">
+                        <p>{{ task.task_description }}</p>
+                        <p><em>by: {{ task.created_by }}</em></p>
+                      </div>
                     </div>
                   </div>
                 </div>
