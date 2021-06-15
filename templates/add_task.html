@@ -39,7 +39,7 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Task</h3></div>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ url_for('login') }}" class="was-validated">
+                                    <form method="POST" action="{{ url_for('add_task') }}" class="was-validated" novalidate>
                                         <div class="mb-3">
                                             <label for="task_name" class="form-label">Task Name:</label>
                                             <textarea class="form-control is-invalid" id="task_name" placeholder="Task"
@@ -55,6 +55,12 @@
                                                 placeholder="Description" required></textarea>
                                             <div class="invalid-feedback">
                                                 Please enter a Task Description.
+                                            </div>
+                                        </div>
+                                        <div class="md-form mb-3">
+                                            <input type="date" id="inputMDEx" data-provide="datepicker" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Please enter a Due Date.
                                             </div>
                                         </div>
                                         <div class="form-check form-switch">
@@ -105,9 +111,10 @@
                 </div>
             </div>
         </footer>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        
 
 {% endblock %}
