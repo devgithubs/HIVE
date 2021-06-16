@@ -30,6 +30,7 @@ def index():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        is_admin = "on" if request.form.get("is_admin") else "off"
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("inputEmail").lower()})
         
@@ -42,11 +43,12 @@ def register():
             "password": generate_password_hash(
                 request.form.get("inputPassword")),
             "firstName": request.form.get("inputFirstName").lower(),
-            "lastName": request.form.get("inputLastName").lower()
+            "lastName": request.form.get("inputLastName").lower(),
+            "is_admin": is_admin
         }
         mongo.db.users.insert_one(register)
 
-        session["user"] = request.form.get("inputEmail")
+        session["user"] = request.form.get("inputEmail") # session key value is passed based on users email
         flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
@@ -82,11 +84,15 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     tasks = list(mongo.db.tasks.find())
+    admins = mongo.db.users.find_one(
+        {"email": session["user"]})
+    print(admins)
     username = mongo.db.users.find_one(
         {"email": session["user"]})['firstName'].title()
-
+    print(username)
     if session["user"]:
-        return render_template("profile.html", username=username, tasks=tasks)
+        return render_template(
+            "profile.html", username=username, tasks=tasks, admins=admins)
 
     return redirect(url_for("login"))
 
@@ -130,7 +136,7 @@ def edit_task(task_id):
             "due_date": request.form.get("due_date"),
             "created_by": session["user"]
         }
-        mongo.db.tasks.insert_one(submit)
+        mongo.db.tasks.update({"_id": ObjectId(task_id)}, submit)
         flash("Task Successfully updated")
 
     task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
