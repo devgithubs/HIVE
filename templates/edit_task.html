@@ -58,7 +58,7 @@
                                         <div class="mb-3">
                                             <label for="task_name" class="form-label">Task Name:</label>
                                             <textarea class="form-control is-invalid" id="task_name" placeholder="Task"
-                                                name="task_name" minlength="5" maxlength="50" value="{{ task.task_name }}" required> {{ task.task_description }}</textarea>
+                                                name="task_name" minlength="5" maxlength="50" value="{{ task.task_name }}" required>{{ task.task_name }}</textarea>
                                             <div class="invalid-feedback">
                                                 Please enter a Task Name.
                                             </div>
@@ -67,14 +67,15 @@
                                             <label for="task_description" class="form-label">Task Description:</label>
                                             <textarea class="form-control is-invalid" id="task_description" rows="5"
                                                 minlength="5" maxlength="200" name="task_description"
-                                                placeholder="Description" required></textarea>
+                                                placeholder="Description" required>{{- task.task_description -}}
+                                            </textarea>
                                             <div class="invalid-feedback">
                                                 Please enter a Task Description.
                                             </div>
                                         </div>
                                         <div class="md-form mb-3">
                                             <div class="input-group date" data-provide="datepicker-inline">
-                                                <input id="due_date" name="due_date" type="text" class="form-control datepicker" placeholder="Select Date" required>
+                                                <input id="due_date" name="due_date" type="text" value="{{ task.due_date }}" class="form-control datepicker" placeholder="Select Date" required>
                                                 <div class="input-group-addon">
                                                 </div>
                                             </div>
