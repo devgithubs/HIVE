@@ -81,8 +81,12 @@
                                             </div>
                                         </div>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="is_urgent" name="is_urgent">
-                                            <label class="form-check-label" for="is_urgent">Is urgent?</label>
+                                            {% if task.is_urgent == "on" %}
+                                                <input class="form-check-input" type="checkbox" id="is_urgent" name="is_urgent" checked>
+                                            {% else %}
+                                                <input class="form-check-input" type="checkbox" id="is_urgent" name="is_urgent">
+                                            {% endif %}
+                                                <label class="form-check-label" for="is_urgent">Is urgent?</label>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
                                             <div class="d-grid"><button class="btn btn-primary btn-block"
