@@ -33,53 +33,86 @@
             <main>
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-7">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="col-lg-10">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ url_for('register') }}">
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" minlength="5"
-                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Enter your first name" required/>
-                                                    <label for="inputFirstName">First name</label>
+                                    <form method="POST" action="{{ url_for('register') }}" class="was-validated mb-3" novalidate>
+                                        <div class="row mb-3 p-3">
+                                            <div class="col-md-4">                                              
+                                                <textarea class="form-control is-invalid" id="uname" placeholder="Username" name="uname" minlength="5"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Username.
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating">
-                                                    <input class="form-control" id="inputLastName" name="inputLastName" type="text" minlength="5"
-                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Enter your last name" required/>
-                                                    <label for="inputLastName">Last name</label>
+                                            <div class="col-md-4">                                              
+                                                <textarea class="form-control is-invalid" id="inputFirstName" placeholder="First Name" name="inputFirstName"
+                                                    minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter your First Name.
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" name="inputEmail" type="email" minlength="5"
-                                            maxlength="30" placeholder="name@example.com" required/>
-                                            <label for="inputEmail">Email address</label>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" name="inputPassword" type="password" minlength="5"
-                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Create a password" required/>
-                                                    <label for="inputPassword">Password</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" type="password" minlength="5"
-                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" placeholder="Confirm password" required/>
-                                                    <label for="inputPasswordConfirm">Confirm Password</label>
+                                            <div class="col-md-4">                                             
+                                                <textarea class="form-control is-invalid" id="inputLastName" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputLastName" placeholder="Last Name" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter your Last Name.
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-check form-switch">
+                                        <div class="row mb-3 p-3">
+                                            <div class="col-md-6">                                               
+                                                <textarea class="form-control is-invalid" id="inputEmail" minlength="5" maxlength="30"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputEmail" placeholder="Email" type="email" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Email.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                               
+                                                <textarea class="form-control is-invalid" id="inputPassword" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputPassword" placeholder="Password" type="password"
+                                                    required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Password.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 p-3">                                           
+                                            <textarea class="form-control is-invalid" id="inputAddress" minlength="5" maxlength="30"
+                                                pattern="^[a-zA-Z0-9]{5,15}$" name="inputAddress" placeholder="Address" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a Address.
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3 p-3">
+                                            <div class="col-md-4">                                               
+                                                <textarea class="form-control is-invalid" id="inputCity" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputCity" placeholder="City" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a City.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">                                               
+                                                <textarea class="form-control is-invalid" id="inputCountry" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputCountry" placeholder="Country" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Country.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control is-invalid" id="postCode" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="postCode" placeholder="Post Code" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Post Code.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-switch m-3">
                                             <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin" required>
                                             <label class="form-check-label" for="is_admin">Are you an Admin?</label>
                                         </div>
-                                        <div class="mt-4 mb-0">
+                                        <div class="col-md-12 mt-2">
                                             <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Create Account</button></div>
                                         </div>
                                     </form>
@@ -93,7 +126,7 @@
                 </div>
             </main>
         </div>
-        <footer class="footer fixed-bottom bg-light">
+        <footer class="footer bottom bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
