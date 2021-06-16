@@ -1,0 +1,136 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container navbar-right">
+            <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
+            <ul class="navbar-right">
+                {% if session.user %}
+                <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+                {% else %}
+                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+ 
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-3">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Task</h3></div>
+                                <div class="card-body">
+                                    <form method="POST" action="{{ url_for('edit_task', task_id=task._id) }}" class="was-validated mb-3" novalidate>
+                                        <div class="mb-3">
+                                            <select id="category_name" name="category_name" class="form-select" aria-label="Default select example" required>
+                                                <option value="" disabled>Choose Category</option>
+                                                {% for category in categories %}
+                                                    {% if category.category_name == task.category_name %}
+                                                        <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                                                    {% else %}
+                                                        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a Task Category.
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="task_name" class="form-label">Task Name:</label>
+                                            <textarea class="form-control is-invalid" id="task_name" placeholder="Task"
+                                                name="task_name" minlength="5" maxlength="50" value="{{ task.task_name }}" required> {{ task.task_description }}</textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a Task Name.
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="task_description" class="form-label">Task Description:</label>
+                                            <textarea class="form-control is-invalid" id="task_description" rows="5"
+                                                minlength="5" maxlength="200" name="task_description"
+                                                placeholder="Description" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a Task Description.
+                                            </div>
+                                        </div>
+                                        <div class="md-form mb-3">
+                                            <div class="input-group date" data-provide="datepicker-inline">
+                                                <input id="due_date" name="due_date" type="text" class="form-control datepicker" placeholder="Select Date" required>
+                                                <div class="input-group-addon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="is_urgent" name="is_urgent">
+                                            <label class="form-check-label" for="is_urgent">Is urgent?</label>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+                                            <div class="d-grid"><button class="btn btn-primary btn-block"
+                                                    type="submit">Edit  <i class="bi bi-check-lg"></i></button></i></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer bottom bg-light mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        
+
+{% endblock %}
