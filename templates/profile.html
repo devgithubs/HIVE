@@ -89,7 +89,12 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{ username }}</h1>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+            {% if admins.is_admin == "on" %}
+              <p class="text-white mt-0 mb-5">This is your Admin profile page. You can see information and manage projects or assigned tasks for employees within your organization.</p>
+            {% else %}
+              <p class="text-white mt-0 mb-5">This is your profile page. You can see your personal information and manage your projects or assigned tasks.</p>
+            {% endif %}
+            
             <a href="#!" class="btn btn-info">Edit profile</a>
           </div>
         </div>
@@ -180,7 +185,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="{{ admins.email }}">
                       </div>
                     </div>
                   </div>
@@ -188,13 +193,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{ username }}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{ admins.lastName.title() }}">
                       </div>
                     </div>
                   </div>
@@ -252,8 +257,15 @@
                         <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
                           {{ task.category_name }}
                         </button>
-                          <a class="btn btn-success btn-sm" href="">Done</a>
-                          <a class="btn btn-primary btn-sm" href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
+                          
+                            {% if admins.is_admin == "on" %}
+                              <a class="btn btn-primary btn-sm" href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
+                            {% else %}
+                              <a class="btn btn-success btn-sm" href="">Done</a>
+                            {% endif %}
+                          
+                          
+                          
                           {% if task.is_urgent == "on" %}
                             <i class="bi bi-exclamation-lg" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
                           {% endif %}
