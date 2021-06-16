@@ -252,8 +252,8 @@
                         <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
                           {{ task.category_name }}
                         </button>
-                          <button class="btn btn-success btn-sm" href="" type="button">Done</button>
-                          <button class="btn btn-primary btn-sm" type="button">Edit</button>
+                          <a class="btn btn-success btn-sm" href="">Done</a>
+                          <a class="btn btn-primary btn-sm" href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
                           {% if task.is_urgent == "on" %}
                             <i class="bi bi-exclamation-lg" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
                           {% endif %}
