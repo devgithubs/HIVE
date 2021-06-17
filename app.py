@@ -44,7 +44,12 @@ def register():
                 request.form.get("inputPassword")),
             "firstName": request.form.get("inputFirstName").lower(),
             "lastName": request.form.get("inputLastName").lower(),
-            "is_admin": is_admin
+            "is_admin": is_admin,
+            "user_name": request.form.get("uname").lower(),
+            "address": request.form.get("inputAddress").lower(),
+            "city": request.form.get("inputCity").lower(),
+            "country": request.form.get("inputCountry").lower(),
+            "post_code": request.form.get("postCode").lower()
         }
         mongo.db.users.insert_one(register)
 
