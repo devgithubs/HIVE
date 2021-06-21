@@ -184,6 +184,11 @@ def edit_task(task_id):
     return render_template("edit_task.html", task=task, categories=categories)
 
 
+@app.route("/delete_task/<task_id>")
+def delete_task(task_id):
+    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
+    return redirect(url_for("profile"))
+
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
