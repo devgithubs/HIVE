@@ -270,7 +270,8 @@
                                 <a class="btn btn-primary btn-sm"
                                   href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
                               {% else %}
-                                <a class="btn btn-success btn-sm" href="">Done</a>
+                                <a class="btn btn-success btn-sm" 
+                                href="{{ url_for('delete_task', task_id=task._id) }}">Done</a>
                               {% endif %}
                                                       
                           
