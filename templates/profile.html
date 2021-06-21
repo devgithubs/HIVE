@@ -88,14 +88,14 @@
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello {{ username }}</h1>
-            {% if admins.is_admin == "on" %}
+            <h1 class="display-2 text-white">Hello {{ return_edit.firstName | title }}</h1>
+            {% if return_edit.is_admin == "on" %}
               <p class="text-white mt-0 mb-5">This is your Admin profile page. You can see information and manage projects or assigned tasks for employees within your organization.</p>
             {% else %}
               <p class="text-white mt-0 mb-5">This is your profile page. You can see your personal information and manage your projects or assigned tasks.</p>
             {% endif %}
             
-            <a href="#!" class="btn btn-info">Edit profile</a>
+            <a href="{{ url_for('update_profile', id=return_edit._id) }}" class="btn btn-info">Edit profile</a>
           </div>
         </div>
       </div>
@@ -107,11 +107,15 @@
           <div class="card card-profile shadow">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <a href="#">
-                    <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="rounded-circle">
-                  </a>
-                </div>
+                <div class="container">
+                  <div class="picture-container">
+                      <div class="picture">
+                          <img src="https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no" class="picture-src" id="wizardPicturePreview" onchange="readURL(this);" title="">
+                          <input type="file" id="wizard-picture" class="">
+                      </div>
+                       <h6 class="">Choose Picture</h6>
+                  </div>
+              </div>
               </div>
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
@@ -141,10 +145,10 @@
               </div>
               <div class="text-center">
                 <h3>
-                  {{ admins.firstName.title() }} {{ admins.lastName.title() }}<span class="font-weight-light">, 27</span>
+                  {{ return_edit.firstName | title }} {{ return_edit.lastName | title }}<span class="font-weight-light">, 27</span>
                 </h3>
                 <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>{{ admins.city.title() }}, {{ admins.country.title() }}
+                  <i class="ni location_pin mr-2"></i>{{ return_edit.city | title }}, {{ return_edit.country | title }}
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
@@ -179,13 +183,15 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{ admins.user_name }}">
+                        
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{ return_edit.user_name }}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="{{ admins.email }}">
+                        <label class="form-control-label" for="input-email">Email address </label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="Email" value="{{ return_edit.email }}">
+                        
                       </div>
                     </div>
                   </div>
@@ -193,13 +199,19 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{ admins.firstName.title() }}">
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{ return_edit.firstName | title }}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{ admins.lastName.title() }}">
+                        <label class="form-control-label" for="inputPassword">Last name</label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{ return_edit.lastName | title }}">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="inputPassword">Password</label>
+                        <input type="password" id="inputPassword" class="form-control form-control-alternative" placeholder="Password" value="Password">
                       </div>
                     </div>
                   </div>
@@ -212,7 +224,7 @@
                     <div class="col-md-12">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-address">Address</label>
-                        <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="{{ admins.address.title() }}" type="text">
+                        <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="{{ return_edit.address | title }}" type="text">
                       </div>
                     </div>
                   </div>
@@ -220,19 +232,19 @@
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="{{ admins.city.title() }}">
+                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="{{ return_edit.city | title }}">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-country">Country</label>
-                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="{{ admins.country.title() }}">
+                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="{{ return_edit.country | title }}">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="{{ admins.post_code.title() }}">
+                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="{{ return_edit.post_code | title }}">
                       </div>
                     </div>
                   </div>
@@ -257,14 +269,14 @@
                         <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
                           {{ task.category_name }}
                         </button>
-                          
-                            {% if admins.is_admin == "on" %}
-                              <a class="btn btn-primary btn-sm" href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
-                            {% else %}
-                              <a class="btn btn-success btn-sm" href="">Done</a>
-                            {% endif %}
-                          
-                          
+                         
+                              {% if return_edit.is_admin == "on" %}
+                                <a class="btn btn-primary btn-sm"
+                                  href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
+                              {% else %}
+                                <a class="btn btn-success btn-sm" href="">Done</a>
+                              {% endif %}
+                                                      
                           
                           {% if task.is_urgent == "on" %}
                             <i class="bi bi-exclamation-lg" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
