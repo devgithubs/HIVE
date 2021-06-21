@@ -3,6 +3,7 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
+from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -53,11 +54,50 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        session["user"] = request.form.get("inputEmail") # session key value is passed based on users email
-        flash("Registration Successful!")
+        session["user"] = request.form.get("inputEmail")
+        #flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
     return render_template("register.html")
+
+
+@app.route("/update_profile/<id>", methods=["GET", "POST"])
+def update_profile(id):
+    if request.method == "POST":
+        is_admin = "on" if request.form.get("is_admin") else "off"
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("inputEmail").lower()})
+        # print(existing_user)
+
+        # record=mongo.db.users.find_one({"email": session["user"]})
+        record = mongo.db.users.find_one(
+            {"email": request.form.get("inputEmail").lower()})
+        for key, value in record.items():
+            # if key and value is not None:
+            print(key)
+            print(value)
+        
+        if existing_user:
+            
+            edited = {
+                "email": request.form.get("inputEmail").lower(),
+                "password": generate_password_hash(
+                    request.form.get("inputPassword")),
+                "firstName": request.form.get("inputFirstName").lower(),
+                "lastName": request.form.get("inputLastName").lower(),
+                "is_admin": is_admin,
+                "user_name": request.form.get("uname").lower(),
+                "address": request.form.get("inputAddress").lower(),
+                "city": request.form.get("inputCity").lower(),
+                "country": request.form.get("inputCountry").lower(),
+                "post_code": request.form.get("postCode").lower()
+            }
+            mongo.db.users.update({"_id": ObjectId(id)}, edited)
+            flash("Update Successful!")
+            # print(f'the {record} is')
+    return_edit = mongo.db.users.find_one({"_id": ObjectId(id)})
+    return render_template(
+        "update_profile.html", return_edit=return_edit)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -70,8 +110,6 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("inputPassword")):
                     session["user"] = request.form.get("inputEmail").lower()
-                    # flash("Welcome {}!".format(
-                    #     existing_user['firstName'].title()))
                     return redirect(
                         url_for("profile", username=session["user"]))
 
@@ -89,15 +127,12 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     tasks = list(mongo.db.tasks.find())
-    admins = mongo.db.users.find_one(
+    return_edit = mongo.db.users.find_one(
         {"email": session["user"]})
-    print(admins)
-    username = mongo.db.users.find_one(
-        {"email": session["user"]})['firstName'].title()
-    print(username)
+    # print(return_edit)
     if session["user"]:
         return render_template(
-            "profile.html", username=username, tasks=tasks, admins=admins)
+            "profile.html", tasks=tasks, return_edit=return_edit)
 
     return redirect(url_for("login"))
 
@@ -154,3 +189,7 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+
+
+mail = Mail(app)
+
