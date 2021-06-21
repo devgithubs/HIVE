@@ -1,0 +1,162 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container navbar-right">
+            <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
+            <ul class="navbar-right">
+                {% if session.user %}
+                <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+                {% else %}
+                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Update Profile</h3></div>
+                                <div class="card-body">
+                                    <form method="POST" action="{{ url_for('update_profile', id=return_edit._id) }}" class="was-validated mb-3" novalidate>
+                                        <div class="row mb-3 p-3">
+                                            <div class="col-md-4">                                              
+                                                <textarea class="form-control is-invalid" id="uname" placeholder="Username" name="uname" minlength="5"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$">{{ return_edit.user_name }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Username.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">                                              
+                                                <textarea class="form-control is-invalid" id="inputFirstName" placeholder="First Name" name="inputFirstName"
+                                                    minlength="1" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"> {{ return_edit.firstName | title }} </textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter your First Name.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">                                             
+                                                <textarea class="form-control is-invalid" id="inputLastName" minlength="1" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputLastName" placeholder="Last Name">{{ return_edit.lastName | title }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter your Last Name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3 p-3">
+                                            <div class="col-md-6">                                               
+                                                <textarea class="form-control is-invalid" id="inputEmail" minlength="5" maxlength="30"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputEmail" placeholder="Email" type="email">{{ return_edit.email }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Email.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">                                               
+                                                <textarea class="form-control is-invalid" id="inputPassword" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputPassword" placeholder="Password" type="password"
+                                                    value="Password"></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Password.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 p-3">                                           
+                                            <textarea class="form-control is-invalid" id="inputAddress" minlength="5" maxlength="30"
+                                                pattern="^[a-zA-Z0-9]{5,15}$" name="inputAddress" placeholder="Address">{{ return_edit.address }}</textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a Address.
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3 p-3">
+                                            <div class="col-md-4">                                               
+                                                <textarea class="form-control is-invalid" id="inputCity" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputCity" placeholder="City">{{ return_edit.city }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a City.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">                                               
+                                                <textarea class="form-control is-invalid" id="inputCountry" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputCountry" placeholder="Country">{{ return_edit.country }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Country.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <textarea class="form-control is-invalid" id="postCode" minlength="5" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="postCode" placeholder="Post Code">{{ return_edit.post_code }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter a Post Code.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-switch m-3">
+                                            <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin">
+                                            <label class="form-check-label" for="is_admin">Are you an Admin?</label>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Update Profile</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"><a href="{{ url_for('login') }}">Have an account? Go to login</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer bottom bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+{% endblock %}
