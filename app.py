@@ -187,7 +187,14 @@ def edit_task(task_id):
 @app.route("/delete_task/<task_id>")
 def delete_task(task_id):
     mongo.db.tasks.remove({"_id": ObjectId(task_id)})
-    return redirect(url_for("profile"))
+    flash("Task Removed")
+    return redirect(url_for("profile", username=session["user"]))
+
+
+@app.route("/info")
+def info():
+    return render_template("info.html")
+
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
 if __name__ == "__main__":
@@ -196,5 +203,14 @@ if __name__ == "__main__":
             debug=True)
 
 
+mail_settings = {
+ "MAIL_SERVER": os.environ.get('MAIL_SERVER'), "MAIL_PORT": os.environ.get('MAIL_PORT'),
+ "MAIL_USE_TLS": False,
+ "MAIL_USE_SSL": os.environ.get('MAIL_USE_SSL'),
+ "MAIL_USERNAME": os.environ.get('MAIL_USERNAME'),
+ "MAIL_PASSWORD": os.environ.get('MAIL_PASSWORD'),
+ "SECURITY_EMAIL_SENDER": 
+os.environ.get("SECURITY_EMAIL_SENDER")
+}
+app.config.update(mail_settings)
 mail = Mail(app)
-
