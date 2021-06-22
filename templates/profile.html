@@ -11,9 +11,11 @@
               {% if session.user %}
               <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
               <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+              <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
               {% else %}
               <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
               <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+              <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
               {% endif %}
             </ul>
         </div>
@@ -257,6 +259,15 @@
                 <hr class="my-4">
                 <!-- Tasks -->
                 <h6 class="heading-small text-muted mb-4">Current Tasks</h6>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                      <strong>{{ message }}</strong>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
                 {% for task in tasks %}<!--below-->
                 <div id="accordion">
                   <div class="card">
