@@ -4,6 +4,10 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_mail import Mail, Message
+from flask_wtf import FlaskForm
+from wtforms.fields.html5 import DateField
+from wtforms.validators import DataRequired
+from wtforms import validators, SubmitField
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -194,11 +198,6 @@ def delete_task(task_id):
 @app.route("/info")
 def info():
     return render_template("info.html")
-
-
-# @app.route("/contact")
-# def contact():
-#     return render_template("contact.html")
 
 
 mail_settings = {
