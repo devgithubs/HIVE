@@ -6,7 +6,6 @@ $(document).ready(function() {
     i18n: {
         done: "Select"
     }})
-  $(".btn-link").click(function(){
-      $(".collapse").collapse('toggle');
-    });
+  $(".dropdown-toggle").dropdown();  
+  $(".collapse").collapse('toggle');
 });
