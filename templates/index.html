@@ -18,7 +18,8 @@
     </head>
     <body>
         {% block content %}
-        
+
+        </section> 
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container navbar-right">
@@ -35,6 +36,16 @@
                 </ul>
             </div>
         </nav>
+        <section>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                        <strong>{{ message }}</strong>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">
@@ -44,10 +55,10 @@
                             <!-- Page heading-->
                             <h1 class="mb-5">Human Resource Management made simple!</h1>
                             <!-- Signup form-->
-                            <form>
+                            <form method="POST" action="{{ url_for('contact') }}">
                                 <div class="input-group input-group-lg">
-                                    <input class="form-control" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
-                                    <button class="btn btn-primary" id="button-submit" type="button">Sign up!</button>
+                                    <input id="email" class="form-control validate" name="email" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
+                                    <button class="btn btn-primary" id="button-submit" name="action" type="submit">Sign up!</button>
                                 </div>
                             </form>
                         </div>
@@ -56,15 +67,6 @@
             </div>
         </header>
         <section>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="row flashes">
-                            <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
         </section>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
@@ -156,10 +158,10 @@
                     <div class="col-xl-6">
                         <h2 class="mb-4">Ready to get started? Sign up now!</h2>
                         <!-- Signup form-->
-                        <form>
+                        <form method="POST" action="{{ url_for('contact') }}">
                             <div class="input-group input-group-lg">
-                                <input class="form-control" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
-                                <button class="btn btn-primary" id="button-submit" type="button">Sign up!</button>
+                                <input id="email" class="form-control validate" name="email" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
+                                <button class="btn btn-primary" id="button-submit" name="action" type="submit">Sign up!</button>
                             </div>
                         </form>
                     </div>
