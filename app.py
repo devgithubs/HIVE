@@ -196,6 +196,43 @@ def info():
     return render_template("info.html")
 
 
+# @app.route("/contact")
+# def contact():
+#     return render_template("contact.html")
+
+
+mail_settings = {
+ "MAIL_SERVER": os.environ.get(
+     'MAIL_SERVER'), "MAIL_PORT": os.environ.get('MAIL_PORT'),
+ "MAIL_USE_TLS": False,
+ "MAIL_USE_SSL": os.environ.get('MAIL_USE_SSL'),
+ "MAIL_USERNAME": os.environ.get('MAIL_USERNAME'),
+ "MAIL_PASSWORD": os.environ.get('MAIL_PASSWORD'),
+ "SECURITY_EMAIL_SENDER": os.environ.get("SECURITY_EMAIL_SENDER")
+}
+
+
+app.config.update(mail_settings)
+mail = Mail(app)
+
+
+@app.route("/index", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        with app.app_context():
+            msg = Message("Hello from HIVE")
+            msg.sender = os.environ.get('MAIL_USERNAME')
+            msg.recipients = [request.form.get("email")]
+            # message = request.form.get("message")
+            msg.body = f"Email From: {msg.sender}"
+            msg.html = '<b>Hello, thanks for signing up!</b> welcome to the HIVE, check us out: <a href="https://hive-human-resources.herokuapp.com/info">HIVE</a>.'
+            mail.send(msg)
+            flash("Email sent!")
+            return redirect(url_for('index'))
+            
+    return render_template("index.html")
+
+
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
@@ -203,14 +240,3 @@ if __name__ == "__main__":
             debug=True)
 
 
-mail_settings = {
- "MAIL_SERVER": os.environ.get('MAIL_SERVER'), "MAIL_PORT": os.environ.get('MAIL_PORT'),
- "MAIL_USE_TLS": False,
- "MAIL_USE_SSL": os.environ.get('MAIL_USE_SSL'),
- "MAIL_USERNAME": os.environ.get('MAIL_USERNAME'),
- "MAIL_PASSWORD": os.environ.get('MAIL_PASSWORD'),
- "SECURITY_EMAIL_SENDER": 
-os.environ.get("SECURITY_EMAIL_SENDER")
-}
-app.config.update(mail_settings)
-mail = Mail(app)
