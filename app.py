@@ -18,6 +18,14 @@ if os.path.exists("env.py"):
 # create instance of Flask 
 app = Flask(__name__)
 
+
+# create object of class 
+class InfoForm(FlaskForm):
+    startdate = DateField('Start Date', format='%Y-%m-%d', validators=(validators.DataRequired(),))
+    enddate = DateField('End Date', format='%Y-%m-%d', validators=(validators.DataRequired(),))
+    submit = SubmitField('Submit')
+
+
 # additional configuration 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")# grabs DB name
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI") # connection string
@@ -230,6 +238,18 @@ def contact():
             return redirect(url_for('index'))
             
     return render_template("index.html")
+
+
+
+@app.route("/annual_leave", methods=["GET", "POST"])
+def annual_leave():
+    form = InfoForm()
+    if form.validate_on_submit():
+        session['startdate'] = form.startdate.data
+        session['enddate'] = form.enddate.data
+        return redirect('annual_leave')
+    return render_template('annual_leave.html', form=form)
+
 
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
