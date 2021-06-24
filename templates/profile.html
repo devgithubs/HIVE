@@ -12,7 +12,6 @@
               <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
               <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
               <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
-              <a class="btn btn-primary" href="{{ url_for('contact') }}">Contact</a>
               {% else %}
               <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
               <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
@@ -171,10 +170,10 @@
                 </div>
                 <div class="dropdown col-4 text-right">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
+                    Options
                   </button>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item active" href="#">Book Annual Leave</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('annual_leave', form=form) }}">Book Annual Leave</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -260,6 +259,12 @@
                 <hr class="my-4">
                 <!-- Tasks -->
                 <h6 class="heading-small text-muted mb-4">Current Tasks</h6>
+                {% if tasks %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Hi {{ return_edit.firstName | title }}</strong> You have outstanding Tasks!
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
                 {% with messages = get_flashed_messages() %}
                   {% if messages %}
                     {% for message in messages %}
@@ -308,18 +313,6 @@
                 </div>
                 {% endfor %}<!--above-->
               </form>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Accordion Item #1
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
