@@ -30,18 +30,33 @@
         {% endif %}
     {% endwith %}
 </section>
-
-<h3> Select a date range </h3>
-<form action="" method='POST' name="myform">
-    {{ form.csrt_token }}
-    {{ form.startdate.label }} {{form.startdate(class='datepicker')}} {{form.hidden_tag()}}
-    {{ form.enddate.label }} {{form.enddate(class='datepicker')}} {{form.hidden_tag()}}
-    <p>
-    {{form.submit()}}
-    </p>
-</form>
  
-<footer class="footer bottom bg-light mt-3">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-3">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Select Date(s)</h3></div>
+                    <div class="card-body">
+                        <form method="POST" action="" class="was-validated mb-3" name="myform" novalidate>
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        {{ form.csrt_token }}
+                                        {{ form.startdate.label }} {{form.startdate(class='datepicker')}} {{form.hidden_tag()}}
+                                        {{ form.enddate.label }} {{form.enddate(class='datepicker')}} {{form.hidden_tag()}}
+                                        <button class="btn btn-primary" type="submit">Create  <i class="bi bi-check-lg"></i></button>
+                                    </div>        
+                                </div>  
+                            </container>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer fixed-bottom bg-light mt-3">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
