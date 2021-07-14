@@ -37,15 +37,20 @@
             <div class="card shadow-lg border-0 rounded-lg mt-5 mb-3">
                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Select Date(s)</h3></div>
                     <div class="card-body">
-                        <form method="POST" action="" class="was-validated mb-3" name="myform" novalidate>
+                        <form method="POST" action="{{ url_for('annual_leave', form=form, id=cur_hols._id) }}" class="was-validated mb-3" name="myform" novalidate>
                             <div class="container">
-                                <div class="row align-items-center">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Select the 'start' and 'end' dates you would like to book off as annual leave</p>
+                                    </div>
                                     <div class="col-4">
                                         {{ form.csrt_token }}
                                         {{ form.startdate.label }} {{form.startdate(class='datepicker')}} {{form.hidden_tag()}}
                                         {{ form.enddate.label }} {{form.enddate(class='datepicker')}} {{form.hidden_tag()}}
-                                        <button class="btn btn-primary" type="submit">Create  <i class="bi bi-check-lg"></i></button>
-                                    </div>        
+                                        <br>
+                                        <br>
+                                        <button class="btn btn-primary" type="submit">Book  <i class="bi bi-check-lg"></i></button>
+                                    </div>
                                 </div>  
                             </container>
                         </form>
