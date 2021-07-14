@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 
 # create object of class 
-class InfoForm(FlaskForm):
+class DateForm(FlaskForm):
     startdate = DateField('Start Date', format='%Y-%m-%d', validators=(validators.DataRequired(),))
     enddate = DateField('End Date', format='%Y-%m-%d', validators=(validators.DataRequired(),))
     submit = SubmitField('Submit')
@@ -138,13 +138,21 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    cur_hols = mongo.db.position.find_one()
+    print(cur_hols["holidays"])
+    entitlements = mongo.db.position.find_one()
     tasks = list(mongo.db.tasks.find())
     return_edit = mongo.db.users.find_one(
         {"email": session["user"]})
     # print(return_edit)
     if session["user"]:
         return render_template(
-            "profile.html", tasks=tasks, return_edit=return_edit)
+            "profile.html",
+            tasks=tasks,
+            return_edit=return_edit,
+            entitlements=entitlements,
+            cur_hols=cur_hols
+        )
 
     return redirect(url_for("login"))
 
@@ -241,16 +249,46 @@ def contact():
 
 
 
-@app.route("/annual_leave", methods=["GET", "POST"])
-def annual_leave():
-    form = InfoForm()
+@app.route("/annual_leave/<id>", methods=["GET", "POST"])
+def annual_leave(id):
+    get_hols = mongo.db.position.find_one()
+    form = DateForm()
     if form.validate_on_submit():
         session['startdate'] = form.startdate.data
         session['enddate'] = form.enddate.data
-        return redirect('annual_leave')
-    return render_template('annual_leave.html', form=form)
+
+        delta = session['enddate'] - session['startdate']
+        delta = delta.days
+        new_hols = int(get_hols["holidays"]) - delta
+        print(new_hols)
+        hol_update = {"$set": {"holidays": new_hols}}
+        mongo.db.position.update({"_id": ObjectId(id)}, hol_update)
+        
+    cur_hols = mongo.db.position.find_one({"_id": ObjectId(id)})    
+    return render_template('annual_leave.html', form=form, cur_hols=cur_hols)
 
 
+@app.route("/add_entitlements", methods=["GET", "POST"])
+def add_entitlements():
+    if request.method == "POST":
+        user_entitled = mongo.db.users.find_one(
+            {"email": request.form.get("inputEmail").lower()})
+
+        if user_entitled:
+            entitlement = {
+                "email": request.form.get("inputEmail").lower(),
+                "title": request.form.get("inputTitle").lower(),
+                "salary": request.form.get("inputSalary").lower(),
+                "holidays": request.form.get("inputHolidays").lower(),
+                "bonus": request.form.get("inputBonus").lower()
+            }
+            mongo.db.position.insert_one(entitlement)
+            # flash("Entitlement successfully added")
+            return redirect(url_for("profile", username=session["user"]))
+
+    # flash("User does not exist")
+    entitlements = mongo.db.position.find_one({"_id": session["user"]})
+    return render_template("add_entitlements.html", entitlements=entitlements)
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
 if __name__ == "__main__":
