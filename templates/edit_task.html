@@ -42,6 +42,10 @@
                                 <div class="card-body">
                                     <form method="POST" action="{{ url_for('edit_task', task_id=task._id) }}" class="was-validated mb-3" novalidate>
                                         <div class="mb-3">
+                                            <label for="assign" class="form-label">Task assigned to:</label>
+                                            <input class="form-control" name="assign" type="text" value="{{ task.task_assign }}" aria-label="readonly input example" readonly>
+                                        </div>
+                                        <div class="mb-3">
                                             <select id="category_name" name="category_name" class="form-select" aria-label="Default select example" required>
                                                 <option value="" disabled>Choose Category</option>
                                                 {% for category in categories %}
@@ -104,31 +108,31 @@
                 </div>
             </main>
         </div>
-        <footer class="footer bottom bg-light mt-3">
+        <footer class="footer fixed-bottom bg-light mt-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#about">About</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#future">Future</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#team">Team</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#pricing">Pricing</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://www.facebook.com/" target="_blank"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                                <a href="https://twitter.com/?lang=en" target="_blank"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>
