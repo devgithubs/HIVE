@@ -37,7 +37,7 @@
             <div class="card shadow-lg border-0 rounded-lg mt-5 mb-3">
                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Select Date(s)</h3></div>
                     <div class="card-body">
-                        <form method="POST" action="{{ url_for('annual_leave', form=form, id=cur_hols._id) }}" class="was-validated mb-3" name="myform" novalidate>
+                        <form method="POST" action="{{ url_for('annual_leave', form=form, hol_id=cur_hols._id) }}" class="was-validated mb-3" name="myform" novalidate>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-6">
