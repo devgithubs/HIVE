@@ -40,9 +40,9 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="row flashes">
-                            <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
-                        </div>
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                        <strong>{{ message }}</strong>
+                    </div>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
@@ -66,7 +66,7 @@
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="../static/assets/img/dublin.jpg" alt="..." /></div>
                     <div class="col-lg-6">
-                        <h2 class="fw-bolder">Our founding</h2>
+                        <h2 id="about" class="fw-bolder">Our founding</h2>
                         <p class="lead fw-normal text-muted mb-0">HIVE was founded by Arthur O'Leary in 2021 in his hometown of Dublin, Ireland.</p>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="../static/assets/img/growth.jpg" alt="..." /></div>
                     <div class="col-lg-6">
-                        <h2 class="fw-bolder">Growth &amp; beyond</h2>
+                        <h2 id="future" class="fw-bolder">Growth &amp; beyond</h2>
                         <p class="lead fw-normal text-muted mb-0">To usher in the organization of the future, Human Resources must adapt to the changing working environments Globally. HIVE seeks to enable workforce strategy and planning and be the Human Resource Management System that will positively affect employee performance.</p>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
         <section class="py-5 bg-light">
             <div class="container px-5 my-5">
                 <div class="text-center">
-                    <h2 class="fw-bolder">Our team</h2>
+                    <h2 id="team" class="fw-bolder">Our team</h2>
                     <p class="lead fw-normal text-muted mb-5">Dedicated to quality and your success</p>
                 </div>
                 <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
@@ -127,7 +127,7 @@
         <section class="py-5">
             <div class="container px-5 my-5">
                 <div class="text-center mb-5">
-                    <h1 class="fw-bolder">Pay as you grow</h1>
+                    <h1 id="pricing" class="fw-bolder">Pay as you grow</h1>
                     <p class="lead fw-normal text-muted mb-0">With our no hassle pricing plans</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
@@ -263,32 +263,47 @@
                 </div>
             </div>
         </section>
+        <section class="py-5 bg-light text-center">
+            <div class="container position-relative">
+                <div class="container px-5 my-5 row justify-content-center">
+                    <div class="text-center mb-5 col-xl-6">
+                        <h1>Get in touch!</h1>
+                        <form method="POST" action="{{ url_for('info_contact') }}">
+                            <div class="input-group input-group-lg">
+                                <input id="email" class="form-control validate" name="email" type="text" placeholder="Enter your email..." aria-label="Enter your email..." aria-describedby="button-submit" />
+                                <button class="btn btn-primary" id="button-submit" name="action" type="submit">Sign up!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>    
+        </section>
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('index') }}">Home</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#future">Future</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#team">Team</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#pricing">Pricing</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://www.facebook.com/" target="_blank"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                                <a href="https://twitter.com/?lang=en" target="_blank"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>
