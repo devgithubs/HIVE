@@ -39,13 +39,14 @@
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Employee Entitlements</h3></div>
                                 <div class="card-body">
                                     <form method="POST" action="{{ url_for('add_entitlements', entitlements=entitlements) }}" class="was-validated mb-3 needs-validation">
-                                        <div class="row mb-3 p-3">
-                                            <div class="col-md-6">                                               
+                                        <div class="row p-3">
+                                            <div class="text-center"><p>Input the email address of the user you would like to add entitlements for.</p></div>
+                                            <div class="col-md-6">                                             
                                                 <input class="form-control" type="email" name="inputEmail" value="" placeholder="Users Email" minlength="1"
                                                 maxlength="30" required/>
                                             </div>
                                             <div class="col-md-6">                                               
-                                                <input class="form-control" type="number" name="inputSalary" value="" placeholder="Salary" minlength="1"
+                                                <input class="form-control" type="number" name="inputSalary" value="" placeholder="Salary e.g. (40,000)" minlength="1"
                                                 maxlength="10" pattern="^[0-9]{1,10}$" required/>
                                             </div>
                                         </div>
@@ -54,14 +55,14 @@
                                                 maxlength="100" pattern="^[a-zA-Z- ]{1,100}$" required/>
                                         </div>
                                         <div class="col-md-12 p-3">
-                                            <input class="form-control" type="number" name="inputHolidays" value="" placeholder="Holiday Day's" minlength="1"
+                                            <input class="form-control" type="number" name="inputHolidays" value="" placeholder="Number of Holiday Day's" minlength="1"
                                             maxlength="2" pattern="^[0-9]{1,2}$" required/>
                                         </div>
                                         <div class="col-md-12 p-3">
-                                            <input class="form-control" type="number" name="inputBonus" value="" placeholder="Bonus" minlength="1"
+                                            <input class="form-control" type="number" name="inputBonus" value="" placeholder="Bonus e.g. (2,000)" minlength="1"
                                             maxlength="10" pattern="^[0-9]{1,10}$" required/>
                                         </div>
-                                        <div class="col-md-12 mt-2">
+                                        <div class="col-md-12 p-3">
                                             <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
                                         </div>
                                     </form>
@@ -72,31 +73,31 @@
                 </div>
             </main>
         </div>
-        <footer class="footer bottom bg-light">
+        <footer class="footer fixed-bottom bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#about">About</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#future">Future</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#team">Team</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#pricing">Pricing</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://www.facebook.com/" target="_blank"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                                <a href="https://twitter.com/?lang=en" target="_blank"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>
