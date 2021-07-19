@@ -1,0 +1,114 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container navbar-right">
+            <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
+            <ul class="navbar-right">
+                {% if session.user %}
+                <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+                {% else %}
+                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
+                <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Employee Entitlements</h3></div>
+                                <div class="card-body">
+                                    <form method="POST" action="{{ url_for('edit_entitlements', entitlement_id=new_entitlements._id) }}" class="was-validated mb-3 needs-validation">
+                                        <div class="row p-1">
+                                            <div class="text-center"><p>Input the details of the user you would like to edit.</p></div>
+                                            <div class="col-md-6">                                             
+                                                <input class="form-control" type="email" name="inputEmail" value="{{ new_entitlements.email }}" placeholder="Users Email" minlength="1"
+                                                maxlength="30" required/>
+                                                <label for="inputEmail" class="form-label">Email:</label>
+                                            </div>
+                                            <div class="col-md-6">                                             
+                                                <input class="form-control" type="number" name="inputSalary" value="{{ new_entitlements.salary }}" placeholder="Salary e.g. (40,000)" minlength="1"
+                                                maxlength="10" pattern="^[0-9]{1,10}$" required/>
+                                                <label for="inputSalary" class="form-label">Salary:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 p-1">
+                                                <input class="form-control" type="text" name="inputTitle" value="{{ new_entitlements.title | title}}" placeholder="Job Title" minlength="1"
+                                                maxlength="100" pattern="^[a-zA-Z- ]{1,100}$" required/>
+                                                <label for="inputTitle" class="form-label">Title:</label>
+                                        </div>
+                                        <div class="col-md-12 p-1">
+                                            <input class="form-control" type="number" name="inputHolidays" value="{{ new_entitlements.holidays }}" placeholder="Number of Holiday Day's" minlength="1"
+                                            maxlength="2" pattern="^[0-9]{1,2}$" required/>
+                                            <label for="inputHolidays" class="form-label">Holidays:</label>
+                                        </div>
+                                        <div class="col-md-12 p-1">
+                                            <input class="form-control" type="number" name="inputBonus" value="{{ new_entitlements.bonus }}" placeholder="Bonus e.g. (2,000)" minlength="1"
+                                            maxlength="10" pattern="^[0-9]{1,10}$" required/>
+                                            <label for="inputBonus" class="form-label">Bonus:</label>
+                                        </div>
+                                        <div class="col-md-12 p-1">
+                                            <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Update</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer fixed-bottom bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+{% endblock %}
