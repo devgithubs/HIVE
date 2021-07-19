@@ -53,28 +53,24 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="task_name" class="form-label">Task Name:</label>
-                                            <textarea class="form-control is-invalid" id="task_name" placeholder="Task"
-                                                name="task_name" minlength="5" maxlength="50" required></textarea>
-                                            <div class="invalid-feedback">
-                                                Please enter a Task Name.
-                                            </div>
+                                            <input class="form-control" type="text" id="task_name" placeholder="Task"
+                                                name="task_name" minlength="1" maxlength="50" required/>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="task_description" class="form-label">Task Description:</label>
-                                            <textarea class="form-control is-invalid" id="task_description" rows="5"
-                                                minlength="5" maxlength="200" name="task_description"
-                                                placeholder="Description" required></textarea>
-                                            <div class="invalid-feedback">
-                                                Please enter a Task Description.
-                                            </div>
+                                            <input class="form-control" type="text" id="task_description" rows="5"
+                                                minlength="1" maxlength="200" name="task_description"
+                                                placeholder="Description" required/>
                                         </div>
                                         <div class="md-form mb-3">
-                                            <div class="input-group date" data-provide="datepicker-inline">
-                                                <input id="due_date" name="due_date" type="text" class="form-control datepicker" placeholder="Select Date" required>
+                                            <div class="input date" data-provide="datepicker-inline">
+                                                <input id="due_date" name="due_date" type="text" class="form-control datepicker" placeholder="Select Due Date" required>
                                                 <div class="input-group-addon">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input class="form-control" type="email" id="task_assign" placeholder="Assigned to (enter email)"
+                                                name="task_assign" minlength="1" maxlength="50" required/>
                                         </div>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="is_urgent" name="is_urgent">
@@ -93,31 +89,31 @@
                 </div>
             </main>
         </div>
-        <footer class="footer bottom bg-light mt-3">
+        <footer class="footer fixed-bottom bg-light mt-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#about">About</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#future">Future</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#team">Team</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#pricing">Pricing</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://www.facebook.com/" target="_blank"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                                <a href="https://twitter.com/?lang=en" target="_blank"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>
