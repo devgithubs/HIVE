@@ -11,6 +11,7 @@
                 {% if session.user %}
                 <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                 <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+                <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
                 {% else %}
                 <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
                 <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
@@ -61,9 +62,9 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="task_name" class="form-label">Task Name:</label>
-                                            <textarea class="form-control is-invalid" id="task_name" placeholder="Task"
-                                                name="task_name" minlength="5" maxlength="50" value="{{ task.task_name }}" required>{{ task.task_name }}</textarea>
+                                            
+                                            <input class="form-control is-invalid" id="task_name" placeholder="Task"
+                                                name="task_name" minlength="5" maxlength="50" value="{{ task.task_name }}" required>
                                             <div class="invalid-feedback">
                                                 Please enter a Task Name.
                                             </div>
@@ -108,7 +109,7 @@
                 </div>
             </main>
         </div>
-        <footer class="footer fixed-bottom bg-light mt-3">
+        <footer class="footer bottom bg-light ">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
