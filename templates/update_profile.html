@@ -9,6 +9,7 @@
                 {% if session.user %}
                 <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                 <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+                <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
                 {% else %}
                 <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
                 <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
@@ -41,22 +42,22 @@
                                     <form method="POST" action="{{ url_for('update_profile', id=return_edit._id) }}" class="was-validated mb-3" novalidate>
                                         <div class="row mb-3 p-3">
                                             <div class="col-md-4">                                              
-                                                <textarea class="form-control is-invalid" id="uname" placeholder="Username" name="uname" minlength="5"
-                                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$">{{ return_edit.user_name }}</textarea>
+                                                <input class="form-control is-invalid" id="uname" placeholder="Username" name="uname" minlength="1"
+                                                    maxlength="15" pattern="^[a-zA-Z0-9]{1,15}$" value="{{ return_edit.user_name }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a Username.
                                                 </div>
                                             </div>
                                             <div class="col-md-4">                                              
-                                                <textarea class="form-control is-invalid" id="inputFirstName" placeholder="First Name" name="inputFirstName"
-                                                    minlength="1" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"> {{ return_edit.firstName | title }} </textarea>
+                                                <input class="form-control is-invalid" id="inputFirstName" placeholder="First Name" name="inputFirstName"
+                                                    minlength="1" maxlength="15" pattern="^[a-zA-Z0-9]{1,15}$" value="{{ return_edit.firstName | title }}">
                                                 <div class="invalid-feedback">
                                                     Please enter your First Name.
                                                 </div>
                                             </div>
                                             <div class="col-md-4">                                             
-                                                <textarea class="form-control is-invalid" id="inputLastName" minlength="1" maxlength="15"
-                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputLastName" placeholder="Last Name">{{ return_edit.lastName | title }}</textarea>
+                                                <input class="form-control is-invalid" id="inputLastName" minlength="1" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{1,15}$" name="inputLastName" placeholder="Last Name" value="{{ return_edit.lastName | title }}">
                                                 <div class="invalid-feedback">
                                                     Please enter your Last Name.
                                                 </div>
@@ -64,46 +65,46 @@
                                         </div>
                                         <div class="row mb-3 p-3">
                                             <div class="col-md-6">                                               
-                                                <textarea class="form-control is-invalid" id="inputEmail" minlength="5" maxlength="30"
-                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputEmail" placeholder="Email" type="email">{{ return_edit.email }}</textarea>
+                                                <input class="form-control is-invalid" id="inputEmail" minlength="1" maxlength="30"
+                                                    name="inputEmail" placeholder="Email" type="email" value="{{ return_edit.email }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a Email.
                                                 </div>
                                             </div>
                                             <div class="col-md-6">                                               
-                                                <textarea class="form-control is-invalid" id="inputPassword" minlength="5" maxlength="15"
+                                                <input class="form-control is-invalid" id="inputPassword" minlength="5" maxlength="15"
                                                     pattern="^[a-zA-Z0-9]{5,15}$" name="inputPassword" placeholder="Password" type="password"
-                                                    value="Password"></textarea>
+                                                    value="Password">
                                                 <div class="invalid-feedback">
                                                     Please enter a Password.
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12 p-3">                                           
-                                            <textarea class="form-control is-invalid" id="inputAddress" minlength="5" maxlength="30"
-                                                pattern="^[a-zA-Z0-9]{5,15}$" name="inputAddress" placeholder="Address">{{ return_edit.address }}</textarea>
+                                            <input class="form-control is-invalid" id="inputAddress" minlength="1" maxlength="30"
+                                                pattern="^[a-zA-Z0-9]{1,15}$" name="inputAddress" placeholder="Address" value="{{ return_edit.address }}">
                                             <div class="invalid-feedback">
                                                 Please enter a Address.
                                             </div>
                                         </div>
                                         <div class="row mb-3 p-3">
                                             <div class="col-md-4">                                               
-                                                <textarea class="form-control is-invalid" id="inputCity" minlength="5" maxlength="15"
-                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputCity" placeholder="City">{{ return_edit.city }}</textarea>
+                                                <input class="form-control is-invalid" id="inputCity" minlength="1" maxlength="25"
+                                                    pattern="^[a-zA-Z0-9]{1,25}$" name="inputCity" placeholder="City" value="{{ return_edit.city }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a City.
                                                 </div>
                                             </div>
                                             <div class="col-md-4">                                               
-                                                <textarea class="form-control is-invalid" id="inputCountry" minlength="5" maxlength="15"
-                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="inputCountry" placeholder="Country">{{ return_edit.country }}</textarea>
+                                                <input class="form-control is-invalid" id="inputCountry" minlength="1" maxlength="30"
+                                                    pattern="^[a-zA-Z0-9]{1,30}$" name="inputCountry" placeholder="Country" value="{{ return_edit.country }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a Country.
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <textarea class="form-control is-invalid" id="postCode" minlength="5" maxlength="15"
-                                                    pattern="^[a-zA-Z0-9]{5,15}$" name="postCode" placeholder="Post Code">{{ return_edit.post_code }}</textarea>
+                                                <input class="form-control is-invalid" id="postCode" minlength="1" maxlength="15"
+                                                    pattern="^[a-zA-Z0-9]{1,15}$" name="postCode" placeholder="Post Code" value="{{ return_edit.post_code }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a Post Code.
                                                 </div>
