@@ -27,15 +27,12 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="btn btn-secondary btn-sm" href="{{ url_for('logout') }}">Log Out</a>
+        <a class="btn btn-secondary btn-sm mt-3" href="{{ url_for('logout') }}">Log Out</a>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="rounded-circle">
-                  <i class="bi-person-circle" style="font-size:48px;"></i>
-                </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ username }}</span>
                 </div>
@@ -112,15 +109,27 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">€{{ entitlements.salary }}</span>
+                      {% if new_entitlements.salary == Null %}
+                        <span class="heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Unavailable right now"><i class="bi bi-info-circle"></i></span>
+                      {% else %}
+                        <span class="heading">€{{ new_entitlements.salary }}</span>
+                      {% endif %}
                       <span class="description">Salary</span>
                     </div>
                     <div>
-                      <span class="heading">{{ entitlements.holidays }}</span>
+                      {% if new_entitlements.holidays == Null %}
+                        <span class="heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Unavailable right now"><i class="bi bi-info-circle"></i></span>
+                      {% else %}
+                        <span class="heading">{{ new_entitlements.holidays }}</span>
+                      {% endif %}
                       <span class="description">Holiday's</span>
                     </div>
                     <div>
-                      <span class="heading">€{{ entitlements.bonus }}</span>
+                      {% if new_entitlements.bonus == Null %}
+                        <span class="heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Unavailable right now"><i class="bi bi-info-circle"></i></span>
+                      {% else %}
+                        <span class="heading">€{{ new_entitlements.bonus }}</span>
+                      {% endif %}
                       <span class="description">Bonus</span>
                     </div>
                   </div>
@@ -133,8 +142,12 @@
                 <div class="h5 font-weight-300">
                   <i class="bi bi-pin-map"></i> {{ return_edit.city | title }}, {{ return_edit.country | title }}
                 </div>
-                <div class="h5 mt-4">
-                  <i class="bi bi-briefcase"></i> {{ entitlements.title | title }}
+                <div class="h5 mt-2">
+                  {% if new_entitlements.title == Null %}
+                    <span class="description">Employee</i></span>
+                  {% else %}
+                    <i class="bi bi-briefcase"></i> {{ new_entitlements.title | title }}</span>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -152,8 +165,12 @@
                     Options
                   </button>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="{{ url_for('annual_leave', form=form, id=cur_hols._id) }}">Book Annual Leave</a></li>
-                    <li><a class="dropdown-item" href="{{ url_for('add_entitlements', entitlements=entitlements) }}">Add Entitlements</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('annual_leave', form=form, hol_id=cur_hols._id) }}">Book Annual Leave</a></li>
+
+                    {% if return_edit.is_admin == "on" %}
+                    <li><a class="dropdown-item" href="#">Add Entitlements</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('edit_entitlements', entitlement_id=new_entitlements._id) }}">Edit Entitlements</a></li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
@@ -166,7 +183,6 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Username</label>
-                        
                         <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{ return_edit.user_name }}">
                       </div>
                     </div>
@@ -234,46 +250,94 @@
                 </div>
                 <hr class="my-4">
                 <!-- Tasks -->
-                <h6 class="heading-small text-muted mb-4">Current Tasks</h6>
-                {% if tasks %}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>Hi {{ return_edit.firstName | title }}</strong> you have outstanding Tasks!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endif %}
-                {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                    {% for message in messages %}
-                      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-                      <strong>{{ message }}</strong>
-                      </div>
-                    {% endfor %}
+            <h6 class="heading-small text-muted mb-4">Current Tasks</h6>
+              {% if tasks %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Hi {{ return_edit.firstName | title }}</strong> active tasks appear below!
+              {% else %}
+                <strong>Hi {{ return_edit.firstName | title }}</strong> No tasks right now!
+              {% endif %}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% for task in tasks %}<!--below-->
+            {% if task.created_by == session["user"] %}
+                {% if loop.index == 0 %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  {% if return_edit.is_admin == "on" %}
+                    <strong>Hi {{ return_edit.firstName | title }}</strong> outstanding employee tasks below!
+                  {% else %}
+                    <strong>Hi {{ return_edit.firstName | title }}</strong> no tasks right now!
                   {% endif %}
-                {% endwith %}
-                {% for task in tasks %}<!--below-->
-                <div id="accordion">
-                  <div class="card">
-                    <div class="card-header" id="heading">
-                      <h5 class="mb-0">
-                        <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endif %}
+                <div class="accordion">
+                  <div class="accordion-item"> 
+                    <div class="accordion-header" id="heading">
+                      <h5 class="accordion-header mb-0">
+                        <button type="button" class="btn btn-info btn-sm m-3" data-bs-toggle="collapse" data-bs-target="#id-{{ task._id }}" aria-expanded="true" aria-controls="#id-{{ task._id }}">
                           {{ task.category_name }}
                         </button>
-                         
-                              {% if return_edit.is_admin == "on" %}
-                                <a class="btn btn-primary btn-sm"
-                                  href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
-                              {% else %}
-                                <a class="btn btn-success btn-sm" 
-                                href="{{ url_for('delete_task', task_id=task._id) }}">Done</a>
-                              {% endif %}
-                                                      
-                          
+                          {% if return_edit.is_admin == "on" %}
+                            <a class="btn btn-primary btn-sm"
+                              href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
+                            <a class="btn btn-danger btn-sm" 
+                              href="{{ url_for('delete_task', task_id=task._id) }}">Remove</a>  
+                          {% else %}
+                            <a class="btn btn-success btn-sm" 
+                            href="{{ url_for('delete_task', task_id=task._id) }}">Complete</a>
+                          {% endif %}
                           {% if task.is_urgent == "on" %}
                             <i class="bi bi-exclamation-lg" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
                           {% endif %}
                       </h5>
                     </div>
-                    <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordion">
+                    <div id="id-{{ task._id }}" class="acordion-collapse collapse" aria-labelledby="heading" data-parent="#accordion">
+                      <div class="accordion-body">
+                        <strong>{{ task.task_name }}</strong> : {{ task.due_date }}
+                        {% if task.is_urgent == "on" %}
+                          <i class="bi bi-exclamation-circle-fill" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
+                        {% endif %}
+                      </div>
+                      <div class="card-body">
+                        <p>{{ task.task_description }}</p>
+                        <p><em>Assigned to: {{ task.task_assign }}</em></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% elif task.task_assign == session["user"] %}
+              {% if loop.index == 0 %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {% if return_edit.is_admin == "off" %}
+                <strong>Hi {{ return_edit.firstName | title }}</strong> you have tasks that require attention!
+                {% else %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Hi {{ return_edit.firstName | title }}</strong> all good, no tasks right now!
+                {% endif %}  
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endif %}
+                <div id="accordion">
+                  <div class="accordion-item">
+                    <div class="accordion-header" id="heading">
+                      <h5 class="accordion-header mb-0">
+                        <button type="button" class="btn btn-info btn-sm m-3" data-bs-toggle="collapse" data-bs-target="#id-{{ task._id }}" aria-expanded="true" aria-controls="#id-{{ task._id }}">
+                          {{ task.category_name }}
+                        </button>
+                          {% if return_edit.is_admin == "on" %}
+                            <a class="btn btn-primary btn-sm"
+                              href="{{ url_for('edit_task', task_id=task._id) }}">Edit</a>
+                          {% else %}
+                            <a class="btn btn-success btn-sm" 
+                            href="{{ url_for('delete_task', task_id=task._id) }}">Done</a>
+                          {% endif %}
+                          {% if task.is_urgent == "on" %}
+                            <i class="bi bi-exclamation-lg" data-toggle="tooltip" data-placement="right" title="URGENT!"></i>
+                          {% endif %}
+                      </h5>
+                    </div>
+                    <div id="id-{{ task._id }}" class="acordion-collapse collapse" aria-labelledby="heading" data-parent="#accordion">
                       <div class="card-body">
                         <strong>{{ task.task_name }}</strong> : {{ task.due_date }}
                         {% if task.is_urgent == "on" %}
@@ -282,12 +346,17 @@
                       </div>
                       <div class="card-body">
                         <p>{{ task.task_description }}</p>
-                        <p><em>by: {{ task.created_by }}</em></p>
+                        <p><em>Created by: {{ task.created_by }}</em></p>
                       </div>
                     </div>
                   </div>
                 </div>
-                {% endfor %}<!--above-->
+
+            {% endif %}
+            
+            {% endfor %}
+                
+                <!--above-->
               </form>
             </div>
           </div>
@@ -301,31 +370,31 @@
   <footer class="footer bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                <ul class="list-inline mb-2">
-                    <li class="list-inline-item"><a href="#!">About</a></li>
-                    <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Contact</a></li>
-                    <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                    <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                </ul>
-                <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
-            </div>
-            <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item me-4">
-                        <a href="#!"><i class="bi-facebook fs-3"></i></a>
-                    </li>
-                    <li class="list-inline-item me-4">
-                        <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!"><i class="bi-instagram fs-3"></i></a>
-                    </li>
-                </ul>
-            </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#about">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#future">Future</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#team">Team</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="{{ url_for('info') }}#pricing">Pricing</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="https://www.facebook.com/" target="_blank"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="https://twitter.com/?lang=en" target="_blank"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
         </div>
     </div>
 </footer>
