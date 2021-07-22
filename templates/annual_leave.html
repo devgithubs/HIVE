@@ -11,6 +11,7 @@
             {% if session.user %}
             <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
             <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+            <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
             {% else %}
             <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
             <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
@@ -66,26 +67,26 @@
         <div class="row">
             <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                 <ul class="list-inline mb-2">
-                    <li class="list-inline-item"><a href="#!">About</a></li>
+                    <li class="list-inline-item"><a href="{{ url_for('info') }}#about">About</a></li>
                     <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Contact</a></li>
+                    <li class="list-inline-item"><a href="{{ url_for('info') }}#future">Future</a></li>
                     <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                    <li class="list-inline-item"><a href="{{ url_for('info') }}#team">Team</a></li>
                     <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="{{ url_for('info') }}#pricing">Pricing</a></li>
                 </ul>
                 <p class="text-muted small mb-4 mb-lg-0">&copy; HIVE 2021. All Rights Reserved.</p>
             </div>
             <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item me-4">
-                        <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank"><i class="bi-facebook fs-3"></i></a>
                     </li>
                     <li class="list-inline-item me-4">
-                        <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                        <a href="https://twitter.com/?lang=en" target="_blank"><i class="bi-twitter fs-3"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                        <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="bi-instagram fs-3"></i></a>
                     </li>
                 </ul>
             </div>
