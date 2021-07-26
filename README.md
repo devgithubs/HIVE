@@ -26,4 +26,4 @@ To have a collaborative platform where users can maintain personal, employment b
 
 #### Opportunities Matrix
 
-<img src="static/assets/img/opportunities.PNG">
+<img src="static/assets/img/opprtunities.PNG">
