@@ -24,6 +24,16 @@ Developing this website will and has served as a learning experience. An introdu
 #### User goals
 To have a collaborative platform where users can maintain personal, employment based data, allocate tasks and entitlements.
 
+#### User Demographics
+* HR professionals
+* Small-Mid-Large companies
+* Company employees
+
+#### User requirements
+* Intuitive interface
+* Responsive on all form factors
+* Easy to use and navigate
+
 #### Opportunities Matrix
 
 <img src="static/assets/img/opprtunities.PNG">
