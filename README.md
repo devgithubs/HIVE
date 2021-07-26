@@ -44,6 +44,17 @@ As a general user:
 * I would like to be able to view tasks assigned to me.
 * I would like to be able to mark tasks assigned to me as complete.
 
+As a administrative user:
+* I would like to be able to register for an account.
+* I would like to be able to log in to an existing account.
+* I would like to be able to log out of an existing account.
+* I would like to edit my personal details.
+* I would like to book annual leave days.
+* I would like to be able to view tasks assigned to me.
+* I would like to be able to mark tasks assigned to me as complete.
+* I would like to assign tasks to general users.
+* I would like to edit tasks assigned to general users.
+* I would like to edit entitlements of general users based on their position, bonus and salary.
 
 #### Opportunities Matrix
 
