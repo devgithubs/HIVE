@@ -5,7 +5,7 @@
 
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-light static-top">
-        <div class="container navbar-right">
+        <div class="container navbar-right navbar-collapse">
             <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
             <ul class="navbar-right">
                 {% if session.user %}
@@ -109,7 +109,7 @@
                 </div>
             </main>
         </div>
-        <footer class="footer bottom bg-light ">
+        <footer class="footer fixed-bottom bg-light ">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
