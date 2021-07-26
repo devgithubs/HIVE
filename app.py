@@ -51,6 +51,13 @@ def register():
             flash("User already exists")
             return redirect(url_for("register"))
 
+        ent_base = {
+            "email": request.form.get("inputEmail").lower(),
+            "title": "Title",
+            "salary": "0",
+            "holidays": "20",
+            "bonus": "0"
+            }
         register = {
             "email": request.form.get("inputEmail").lower(),
             "password": generate_password_hash(
@@ -65,11 +72,12 @@ def register():
             "post_code": request.form.get("postCode").lower()
         }
         mongo.db.users.insert_one(register)
-
+        mongo.db.position.insert_one(ent_base)
         session["user"] = request.form.get("inputEmail")
         #flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
+    # ents_base = mongo.db.position.find_one({"_id": session["user"]})
     return render_template("register.html")
 
 
@@ -138,20 +146,25 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    cur_hols = mongo.db.position.find_one()
-    print(cur_hols["holidays"])
-    entitlements = mongo.db.position.find_one()
+    cur_hols = mongo.db.position.find_one({"email": session["user"]})
+    # entitlements = mongo.db.position.find_one({"email": session["user"]})
+    new_entitlements = mongo.db.position.find_one({"email": session["user"]})
     tasks = list(mongo.db.tasks.find())
+    ents_base = mongo.db.position.find_one({"email": session["user"]})
     return_edit = mongo.db.users.find_one(
         {"email": session["user"]})
-    # print(return_edit)
+    # for task in tasks2:
+    #     print(f"TASK: {task}")
+    print(f'USER: {ents_base}')
     if session["user"]:
         return render_template(
             "profile.html",
             tasks=tasks,
             return_edit=return_edit,
-            entitlements=entitlements,
-            cur_hols=cur_hols
+            # entitlements=entitlements,
+            cur_hols=cur_hols,
+            new_entitlements=new_entitlements,
+            ents_base=ents_base
         )
 
     return redirect(url_for("login"))
@@ -174,6 +187,7 @@ def add_task():
             "task_description": request.form.get("task_description"),
             "is_urgent": is_urgent,
             "due_date": request.form.get("due_date"),
+            "task_assign": request.form.get("task_assign"),
             "created_by": session["user"]
         }
         mongo.db.tasks.insert_one(task)
@@ -194,6 +208,7 @@ def edit_task(task_id):
             "task_description": request.form.get("task_description"),
             "is_urgent": is_urgent,
             "due_date": request.form.get("due_date"),
+            "task_assign": request.form.get("task_assign"),
             "created_by": session["user"]
         }
         mongo.db.tasks.update({"_id": ObjectId(task_id)}, submit)
@@ -207,7 +222,6 @@ def edit_task(task_id):
 @app.route("/delete_task/<task_id>")
 def delete_task(task_id):
     mongo.db.tasks.remove({"_id": ObjectId(task_id)})
-    flash("Task Removed")
     return redirect(url_for("profile", username=session["user"]))
 
 
@@ -247,29 +261,80 @@ def contact():
             
     return render_template("index.html")
 
+@app.route("/info", methods=["GET", "POST"])
+def info_contact():
+    if request.method == "POST":
+        with app.app_context():
+            msg = Message("Hello from HIVE")
+            msg.sender = os.environ.get('MAIL_USERNAME')
+            msg.recipients = [request.form.get("email")]
+            # message = request.form.get("message")
+            msg.body = f"Email From: {msg.sender}"
+            msg.html = '<b>Hello, thanks for signing up!</b> welcome to the HIVE, check us out: <a href="https://hive-human-resources.herokuapp.com/info">HIVE</a>.'
+            mail.send(msg)
+            flash("Email sent!")
+            return redirect(url_for('info'))
+            
+    return render_template("info.html")
 
 
-@app.route("/annual_leave/<id>", methods=["GET", "POST"])
-def annual_leave(id):
-    get_hols = mongo.db.position.find_one()
+# @app.route("/annual_leave/<hol_id>/<username>", methods=["GET", "POST"])
+# @app.route("/annual_leave", defaults={'hol_id': None})
+@app.route("/annual_leave/<hol_id>", methods=["GET", "POST"])
+def annual_leave(hol_id):
     form = DateForm()
-    if form.validate_on_submit():
-        session['startdate'] = form.startdate.data
-        session['enddate'] = form.enddate.data
+    if request.method == "POST":
+        get_hols = mongo.db.position.find_one({"email": session["user"]})
+        print(get_hols)
+        if get_hols is None:
+            print("None")
+            
+        elif int(get_hols["holidays"]) <= 0:
+            flash(
+                "You have no Holidays available to take, contact your HR department.")        
+        elif form.validate_on_submit():
+            session['startdate'] = form.startdate.data
+            session['enddate'] = form.enddate.data
 
-        delta = session['enddate'] - session['startdate']
-        delta = delta.days
-        new_hols = int(get_hols["holidays"]) - delta
-        print(new_hols)
-        hol_update = {"$set": {"holidays": new_hols}}
-        mongo.db.position.update({"_id": ObjectId(id)}, hol_update)
-        
-    cur_hols = mongo.db.position.find_one({"_id": ObjectId(id)})    
-    return render_template('annual_leave.html', form=form, cur_hols=cur_hols)
+            delta = session['enddate'] - session['startdate']
+            delta = delta.days
+            new_hols = int(get_hols["holidays"]) - delta
+            print(new_hols)
+            hol_update = {"$set": {"holidays": new_hols}}
+            mongo.db.position.update_one({"_id": ObjectId(hol_id)}, hol_update)
+            flash(f"You have booked {delta} day(s) off!")
+                              
+    cur_hols = mongo.db.position.find_one({"_id": ObjectId(hol_id)})
+    print(cur_hols["email"])
+    return render_template(
+        'annual_leave.html', form=form, cur_hols=cur_hols)
 
 
-@app.route("/add_entitlements", methods=["GET", "POST"])
-def add_entitlements():
+# @app.route("/add_entitlements", methods=["GET", "POST"])
+# def add_entitlements():
+#     if request.method == "POST":
+#         user_entitled = mongo.db.users.find_one(
+#             {"email": request.form.get("inputEmail").lower()})
+
+#         if user_entitled:
+#             entitlement = {
+#                 "email": request.form.get("inputEmail").lower(),
+#                 "title": request.form.get("inputTitle").lower(),
+#                 "salary": request.form.get("inputSalary").lower(),
+#                 "holidays": request.form.get("inputHolidays").lower(),
+#                 "bonus": request.form.get("inputBonus").lower()
+#             }
+#             mongo.db.position.insert_one(entitlement)
+#             print("the session user is", session["user"])
+#             return redirect(url_for("profile", username=session["user"]))
+
+#     entitlements = mongo.db.position.find_one({"_id": session["user"]})
+#     print(entitlements)
+#     return render_template("add_entitlements.html", entitlements=entitlements)
+
+
+@app.route("/edit_entitlements/<entitlement_id>", methods=["GET", "POST"])
+def edit_entitlements(entitlement_id):
     if request.method == "POST":
         user_entitled = mongo.db.users.find_one(
             {"email": request.form.get("inputEmail").lower()})
@@ -282,18 +347,22 @@ def add_entitlements():
                 "holidays": request.form.get("inputHolidays").lower(),
                 "bonus": request.form.get("inputBonus").lower()
             }
-            mongo.db.position.insert_one(entitlement)
-            # flash("Entitlement successfully added")
-            return redirect(url_for("profile", username=session["user"]))
+            mongo.db.position.update_one(
+                {"email": request.form.get("inputEmail").lower()},
+                {"$set": entitlement})
+            flash('Profile updated')
 
-    # flash("User does not exist")
-    entitlements = mongo.db.position.find_one({"_id": session["user"]})
-    return render_template("add_entitlements.html", entitlements=entitlements)
+    name = mongo.db.users.find_one({"email": session["user"]})
+    new_entitlements = mongo.db.position.find_one(
+        {"_id": ObjectId(entitlement_id)})
+    return render_template(
+        "edit_entitlements.html", new_entitlements=new_entitlements, name=name)
+
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
 
 
