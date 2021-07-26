@@ -34,6 +34,17 @@ To have a collaborative platform where users can maintain personal, employment b
 * Responsive on all form factors
 * Easy to use and navigate
 
+#### User Stories
+As a general user:
+* I would like to be able to register for an account.
+* I would like to be able to log in to an existing account.
+* I would like to be able to log out of an existing account.
+* I would like to edit my personal details.
+* I would like to book annual leave days.
+* I would like to be able to view tasks assigned to me.
+* I would like to be able to mark tasks assigned to me as complete.
+
+
 #### Opportunities Matrix
 
 <img src="static/assets/img/opprtunities.PNG">
