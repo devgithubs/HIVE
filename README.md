@@ -9,7 +9,7 @@ The project features a full-stack website that allows users manage a collective 
 
 ## UX & Design
 
-### Strategy Plane
+## Strategy Plane
 
 #### Project Goal
 The primary goal or 'use case' of the website is to act as a platform where employees and Human Resource professionals of a company can store particular details relating to their employment. Such as, their personal details, contact information. Entitlements such as salary, bonus, position and number of holiday's they have. User's with Administrator level access will be able to assign, edit or remove tasks to employee's based on their email address, they will also be able to set the employees salary, bonus and number of holiday days.
@@ -59,3 +59,13 @@ As a administrative user:
 #### Opportunities Matrix
 
 <img src="static/assets/img/opprtunities.PNG">
+
+## Structure
+
+### Current Features
+#### Features commojn to all pages
+* Navbar with navigation buttons
+* Footer with links to the relevant sections on the info page
+* social media icons
+
+
