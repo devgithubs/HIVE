@@ -78,8 +78,9 @@
                                             <label class="form-check-label" for="is_urgent">Is urgent?</label>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
-                                            <div class="d-grid"><button class="btn btn-primary btn-block"
-                                                    type="submit">Create  <i class="bi bi-check-lg"></i></button></i></div>
+                                            <div class="in-line">
+                                            <a class="btn btn-danger" href="{{ url_for('profile', username=session['user']) }}">Cancel  <i class="bi bi-x-lg"></i></a>
+                                            <button class="btn btn-primary btn-block" type="submit">Create  <i class="bi bi-check-lg"></i></button></i></div>
                                         </div>
                                     </form>
                                 </div>
@@ -90,7 +91,7 @@
                 </div>
             </main>
         </div>
-        <footer class="footer bottom bg-light">
+        <footer class="footer fixed-bottom bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
