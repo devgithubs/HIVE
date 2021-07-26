@@ -1,7 +1,7 @@
 # HIVE - Human Resource Management Platform.
 
 
-(http://ami.responsivedesign.is/https://hive-human-resources.herokuapp.com/index)
+(http://ami.responsivedesign.is/?URL=https://hive-human-resources.herokuapp.com/index)
 
 ## Objective
 This Website was created for the purpose of satisfying the criteria for the third Milestone Project (Python and Data Centric Development) as part of Code Institute's Full Stack Software Developer course.
