@@ -933,7 +933,14 @@
   .nav-link:focus {
     text-decoration: none;
   }
-  
+  .navbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 1rem;
+    margin-right: 1rem;
+    font-size: 2.4rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
   /* .navbar {
     position: relative;
     display: flex;

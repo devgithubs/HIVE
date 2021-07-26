@@ -49,6 +49,20 @@
   }
 }
 
+/*for mobile phones and tablets (both)*/
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .footer {
+    position: static !important;
+  }
+}
+
+/* for mobile phones only*/
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .footer-fixed-bottom {
+    position: static !important;
+  }
+}
+
 body {
   margin: 0;
   font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
