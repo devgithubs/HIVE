@@ -9,7 +9,7 @@ The project features a full-stack website that allows users manage a collective 
 
 ## UX & Design
 
-## Strategy Plane
+## Strategy
 
 #### Project Goal
 The primary goal or 'use case' of the website is to act as a platform where employees and Human Resource professionals of a company can store particular details relating to their employment. Such as, their personal details, contact information. Entitlements such as salary, bonus, position and number of holiday's they have. User's with Administrator level access will be able to assign, edit or remove tasks to employee's based on their email address, they will also be able to set the employees salary, bonus and number of holiday days.
@@ -63,9 +63,19 @@ As a administrative user:
 ## Structure
 
 ### Current Features
-#### Features commojn to all pages
+#### Features common to all pages
 * Navbar with navigation buttons
 * Footer with links to the relevant sections on the info page
 * social media icons
+
+#### Landing page features
+* A full width page banner descibes exactly what the website is aiming to achieve "Human Resource Management made simple!".
+* within the banner there is a call to action for the site visitor to enter their email address to learn more.
+* In the main body of the page there are distinct sections that highlight the benefits that HIVE can bring to your organisation.
+* At the bottom of the page there is section with user success stories. 
+* A further call to action sits under this to once again prompt the visitor to enter their email address.
+* If the user is not signed in or not registered, they will see the below navbar button group layout
+
+* If they user is signed in they will see the below button group
 
 
