@@ -140,3 +140,6 @@ The Profile page contains the richest amount of content and features on the webs
 * Use of the Roboto font throughout for a professional look. 
 #### Images
 * Images included are of a business professional nature. To give a look of collaboration and synergy.  
+
+## Skeleton
+### Wireframes
