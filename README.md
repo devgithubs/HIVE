@@ -74,8 +74,18 @@ As a administrative user:
 * In the main body of the page there are distinct sections that highlight the benefits that HIVE can bring to your organisation.
 * At the bottom of the page there is section with user success stories. 
 * A further call to action sits under this to once again prompt the visitor to enter their email address.
+
+<img src="static/assets/img/lpf3.PNG">
+
 * If the user is not signed in or not registered, they will see the below navbar button group layout
 
-* If they user is signed in they will see the below button group
+<img src="static/assets/img/lpf1.PNG">
 
+* If the user is signed in they will see the below button group
+
+<img src="static/assets/img/lpf2.PNG">
+
+#### Profile page features
+The Profile page contains the richest amount of content and features on the website. 
+* The user is greeted with a pleasing layout and welsome message, which is slightly different depending if the account is general or admin level. 
 
