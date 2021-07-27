@@ -88,10 +88,25 @@ As a administrative user:
 #### Registration page features
 The registration page features a simple to understand form that collects the majority of the users details that are then displayed on their profile page.
 * Importantly there is a switch that changes the type of account between general user and admin level access.
+* There is a link at the bottom of the form for the user to navigate to the log in page if they already have an account.
  
 <img src="static/assets/img/register.PNG">
 
+#### Log in page features
+The Log in page is simple, clean and intuitive.
+* The user logs in with their email address and password that were used at registration. 
+* If the user does not have an account, there is a link at the bottom of the form for the user to navigate to the registration page.
+
+<img src="static/assets/img/login.PNG">
+
 #### Profile page features
 The Profile page contains the richest amount of content and features on the website. 
-* The user is greeted with a pleasing layout and welcome message, which is slightly different depending if the account is general or admin level. 
+* The user is greeted with a pleasing layout and personal welcome message, which is slightly different depending if the account is general or admin level. 
 
+<img src="static/assets/img/p1.PNG">
+
+* There is a button for the user to log out of their account safely.
+* There is a button for the user to edit their profile details.
+* The main body of the profile page contains a variety of personal information about the person.
+
+<img src="static/assets/img/p2.PNG">
