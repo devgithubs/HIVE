@@ -159,3 +159,9 @@ The Profile page contains the richest amount of content and features on the webs
 * Edit Profile
 
 <img src="static/assets/img/wire4.PNG">
+
+### Sitemap
+
+* A general high level view of the website 
+
+<img src="static/assets/img/sitemap.PNG">
