@@ -120,3 +120,12 @@ The Profile page contains the richest amount of content and features on the webs
 
 (admin user view)
 <img src="static/assets/img/admintaskopen.PNG">
+
+* The profile page will also display the users Salary, Bonus, Position and Holiday days left. 
+
+<img src="static/assets/img/p4.PNG">
+
+* These details are added by an **admin user only**, via the 'Edit Entitlements' link in the 'Options' dropdown.
+
+<img src="static/assets/img/optionsadmin.PNG">
+
