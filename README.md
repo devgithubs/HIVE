@@ -165,3 +165,9 @@ The Profile page contains the richest amount of content and features on the webs
 * A general high level view of the website 
 
 <img src="static/assets/img/sitemap.PNG">
+
+### Database Schema
+
+* The database was set up in MongoDb as follows:
+
+<img src="static/assets/img/database.PNG">
