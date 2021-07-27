@@ -171,3 +171,21 @@ The Profile page contains the richest amount of content and features on the webs
 * The database was set up in MongoDb as follows:
 
 <img src="static/assets/img/database.PNG">
+
+## Technologies used
+
+This project some new technologies that I had not used before, namely Flask and MongoDB.
+* HTML, CSS
+* Bootstrap
+* Bootstrap Icons
+* Python
+* Gitpod
+* Github
+* Git
+* Google Fonts
+* MongoDB
+* Flask
+* Jinja
+* Temp Mail
+* Balsamiq
+* 
