@@ -85,7 +85,13 @@ As a administrative user:
 
 <img src="static/assets/img/lpf2.PNG">
 
+#### Registration page features
+The registration page features a simple to understand form that collects the majority of the users details that are then displayed on their profile page.
+* Importantly there is a switch that changes the type of account between general user and admin level access.
+ 
+<img src="static/assets/img/register.PNG">
+
 #### Profile page features
 The Profile page contains the richest amount of content and features on the website. 
-* The user is greeted with a pleasing layout and welsome message, which is slightly different depending if the account is general or admin level. 
+* The user is greeted with a pleasing layout and welcome message, which is slightly different depending if the account is general or admin level. 
 
