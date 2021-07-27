@@ -131,3 +131,12 @@ The Profile page contains the richest amount of content and features on the webs
 
 * Users have the option of booking annual leave days that will be deducted from their total (displayed on their profile). 
 * To access this booking from they go via 'Book Annual Leave' in 'Options' same as above.
+
+### Design Features
+
+#### Colours
+* The colour pallete of the website is mainly pale greys and blues to give a feeling of calm.
+#### Typography
+* Use of the Roboto font throughout for a professional look. 
+#### Images
+* Images included are of a business professional nature. To give a look of collaboration and synergy.  
