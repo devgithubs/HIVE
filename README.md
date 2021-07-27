@@ -143,3 +143,19 @@ The Profile page contains the richest amount of content and features on the webs
 
 ## Skeleton
 ### Wireframes
+
+* Landing page
+
+<img src="static/assets/img/wire1.PNG">
+
+* Profile page
+
+<img src="static/assets/img/wire2.PNG">
+
+* Add Task
+
+<img src="static/assets/img/wire5.PNG">
+
+* Edit Profile
+
+<img src="static/assets/img/wire4.PNG">
