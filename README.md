@@ -125,7 +125,9 @@ The Profile page contains the richest amount of content and features on the webs
 
 <img src="static/assets/img/p4.PNG">
 
-* These details are added by an **admin user only**, via the 'Edit Entitlements' link in the 'Options' dropdown.
+* These details are added by an **admin user only** based on the users email address, via the 'Edit Entitlements' link in the 'Options' dropdown.
 
 <img src="static/assets/img/optionsadmin.PNG">
 
+* Users have the option of booking annual leave days that will be deducted from their total (displayed on their profile). 
+* To access this booking from they go via 'Book Annual Leave' in 'Options' same as above.
