@@ -110,3 +110,13 @@ The Profile page contains the richest amount of content and features on the webs
 * The main body of the profile page contains a variety of personal information about the person.
 
 <img src="static/assets/img/p2.PNG">
+
+* In the current tasks section, active tasks assigned to or by (admin) the user will appear. 
+* To view the details of the task the user clicks on the left button describing the task and an accordion drops down.
+* Depending on the users access level, they will either see
+
+(general user view)
+<img src="static/assets/img/taskopen.PNG">
+
+(admin user view)
+<img src="static/assets/img/admintaskopen.PNG">
