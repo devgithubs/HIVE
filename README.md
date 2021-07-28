@@ -197,7 +197,21 @@ The specific deployment method was to connect Github to Heroku and enable automa
 There are some essential set-up steps required before launching the app on Heroku.
 * Firstly, in the IDE within the project directory, create a requirements.txt file for specifying what python packages are required to run the project. Typically the requirements.txt file is located in the root directory of the project.
 
-The current 'state' packages are captured by running the fololowing command in the terminal: pip freeze --local > requirements.txt
+The current 'state' packages are captured by running the following command in the terminal: pip freeze --local > requirements.txt
 
 * Additionally, Heroku apps include a Procfile that specifies the commands that are executed by the app on startup.
 * Push these files to GitHub and run the app.
+
+### Initialising Heroku app
+* Create Heroku account and sign in.
+* Select 'New' button and 'Create new app'.
+* Choose a name for the app in lowercase.
+* Choose geographic region 'Europe' in this case.
+
+### Setting global variables
+Whatever variables are set in the env.py within the root directory must also be set in the Heroku app. Specifically, within settings chose 'Reveal config vars' and input the relevant pairs.
+
+IP, value: 0.0.0.0
+PORT, value: 5000
+MONGO_DBNAME, value: (the name of the database)
+MONGO_URI, value:
