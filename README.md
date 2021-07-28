@@ -218,3 +218,6 @@ Whatever variables are set in the env.py within the root directory must also be 
 | MONGO_DBNAME  | Name of DB  |
 | MONGO_URI  | Generated within Heroku  |
 | SECRET_KEY  | Password  |
+
+The MONGO_URI value can be sourced from the DB cluster, Copy the link provided to the application and ensure the password and dbname are changed with the correct values).
+The SECRET_KEY is set by the user and not committed to source control.
