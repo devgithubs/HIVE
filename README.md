@@ -236,3 +236,14 @@ The SECRET_KEY is set by the user and not committed to source control.
 * Navigate to GitHub
 * While in GitHub select (https://github.com/devgithubs/HIVE/)
 * In the top right-hand side of the page select 'Fork'
+
+## Credits
+
+#### Images
+The images used throughout the website were sourced from (https://unsplash.com/) which provides free, high-resolution images.
+#### Code
+* The code snippets and templates were adapted from (https://startbootstrap.com/).
+* Code Institute's Tim Nelson's mini project provided a lot of the inspiration for the creation of this site.
+
+#### Acknowledgments
+Special thanks you to Code Institute's tutor support team for their help throughout.
