@@ -221,3 +221,18 @@ Whatever variables are set in the env.py within the root directory must also be 
 
 The MONGO_URI value can be sourced from the DB cluster, Copy the link provided to the application and ensure the password and dbname are changed with the correct values).
 The SECRET_KEY is set by the user and not committed to source control.
+
+#### Enable automatic deploy
+* Select Deploy tab
+* Select enable Automatic deploys
+
+#### Enable connection to GitHub Repo
+* Select deploy tab
+* Type repo name in search
+* Select the dropdown beside GitHub button
+* Select connect 
+
+### Creating a Fork
+* Navigate to GitHub
+* While in GitHub select (https://github.com/devgithubs/HIVE/)
+* In the top right-hand side of the page select 'Fork'
