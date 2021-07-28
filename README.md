@@ -188,4 +188,16 @@ This project some new technologies that I had not used before, namely Flask and 
 * Jinja
 * Temp Mail
 * Balsamiq
-* 
+
+## Deployment
+The IDE used for the project was Gitpod, all code was committed and pushed to Github using Git version control.
+As the project is fullstack, it was necessary to use a hosting platform that supported this functionality. Heroku was chosen for this reason.
+The specific deployment method was to connect Github to Heroku and enable automatic deploys, so that every push to master will deploy a new version of this web app.
+
+There are some essential set-up steps required before launching the app on Heroku.
+* Firstly, in the IDE within the project directory, create a requirements.txt file for specifying what python packages are required to run the project. Typically the requirements.txt file is located in the root directory of the project.
+
+The current 'state' packages are captured by running the fololowing command in the terminal: pip freeze --local > requirements.txt
+
+* Additionally, Heroku apps include a Procfile that specifies the commands that are executed by the app on startup.
+* Push these files to GitHub and run the app.
