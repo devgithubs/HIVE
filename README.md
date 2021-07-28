@@ -211,7 +211,10 @@ The current 'state' packages are captured by running the following command in th
 ### Setting global variables
 Whatever variables are set in the env.py within the root directory must also be set in the Heroku app. Specifically, within settings chose 'Reveal config vars' and input the relevant pairs.
 
-IP, value: 0.0.0.0
-PORT, value: 5000
-MONGO_DBNAME, value: (the name of the database)
-MONGO_URI, value:
+| Key  | Value |
+| ------------- | ------------- |
+| IP  | 0.0.0.0  |
+| PORT  | 5000  |
+| MONGO_DBNAME  | Name of DB  |
+| MONGO_URI  | Generated within Heroku  |
+| SECRET_KEY  | Password  |
