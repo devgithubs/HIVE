@@ -99,5 +99,21 @@ The user sucessfully books (n) number of days off, flash message confirms and th
 #### Result:
 Pass.
 
+### Test Case 6 (A,B)
+
+#### Case:
+_I would like to be able to view tasks assigned to me._
+#### Procedure:
+* log in to an existing account.
+* While on profile page scroll down to the bottom of the page under 'current tasks', active tasks will appear (must be assigned by an admin).
+* Select the task button to learn more about it.
+* If the task is complete the user can select the 'Done' button to remove it from their list of tasks.
+#### Expected outcome:
+The user sucessfully views and or removes the task displayed on their profile page.
+#### Actual Outcome:
+The user sucessfully views and or removes the task displayed on their profile page.
+#### Result:
+Pass.
+
 ## Testing Validators
 ## Testing Features
