@@ -1,7 +1,7 @@
 ## Testing User Stories
 
-*A = General user
-*B = Admin user
+* A = General user
+* B = Admin user
 
 ### First Impression Case (A,B)
 
@@ -66,7 +66,7 @@ The user sucessfully logs out of their account and session.
 #### Actual Outcome:
 The user sucessfully logs out of their account and session and flash message confirms.
 #### Result:
-Pass
+Pass.
 
 ### Test Case 4 (A,B)
 
@@ -81,9 +81,23 @@ The user sucessfully updates their account details.
 #### Actual Outcome:
 The user sucessfully updates their account details and flash message confirms.
 #### Result:
-Pass
+Pass.
 
+### Test Case 5 (A,B)
 
+#### Case:
+_I would like to book annual leave days._
+#### Procedure:
+* log in to an existing account.
+* While on profile page locate the 'Options' drop down button on the 'my account' row of the profile page, and select.
+* Select 'Book annual leave'.
+* From the date picker, select the date range for the number of days you would like to book and select.
+#### Expected outcome:
+The user sucessfully books (n) number of days off and their new holiday total is displayed on their profile page.
+#### Actual Outcome:
+The user sucessfully books (n) number of days off, flash message confirms and the new total is reflected on the profile page.
+#### Result:
+Pass.
 
 ## Testing Validators
 ## Testing Features
