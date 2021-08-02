@@ -14,11 +14,11 @@ _As a first time user I am looking for information and engagement from the websi
 * On landing page scroll down the page to see what information is available.
 * On landing page scroll down to the footer and check what information and options are available.
 #### Expected outcome:
-The user sucessfully obtains the required information to understand what the website is offering
+The user sucessfully obtains the required information to understand what the website is offering.
 #### Actual Outcome:
 The user sucessfully understands the websites objective and does so by engaging with all aspects of the site.
 #### Result:
-Pass
+Pass.
 
 ### Test Case 1 (A,B)
 
@@ -51,7 +51,7 @@ The user sucessfully logs in to their account and their profile is displayed.
 #### Actual Outcome:
 The user sucessfully logs in to their account and their profile is displayed.
 #### Result:
-Pass
+Pass.
 
 ### Test Case 3 (A,B)
 
@@ -112,6 +112,20 @@ _I would like to be able to view tasks assigned to me._
 The user sucessfully views and or removes the task displayed on their profile page.
 #### Actual Outcome:
 The user sucessfully views and or removes the task displayed on their profile page.
+#### Result:
+Pass.
+
+### Test Case 7 (B)
+
+#### Case:
+_I would like to assign tasks to general users._
+#### Procedure:
+* log in to an existing admin account.
+
+#### Expected outcome:
+
+#### Actual Outcome:
+
 #### Result:
 Pass.
 
