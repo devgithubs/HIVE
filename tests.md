@@ -1,7 +1,7 @@
 ## Testing User Stories
 
-A = General user
-B = Admin user
+*A = General user
+*B = Admin user
 
 ### First Impression Case (A,B)
 
@@ -67,6 +67,23 @@ The user sucessfully logs out of their account and session.
 The user sucessfully logs out of their account and session and flash message confirms.
 #### Result:
 Pass
+
+### Test Case 4 (A,B)
+
+#### Case:
+_I would like to edit my personal details._
+#### Procedure:
+* log in to an existing account
+* While on profile page locate the 'Edit profile button' on the left of the screen under the welcome message, and select.
+* In one or all the input fields, enter a new value and select 'update'.
+#### Expected outcome:
+The user sucessfully updates their account details.
+#### Actual Outcome:
+The user sucessfully updates their account details and flash message confirms.
+#### Result:
+Pass
+
+
 
 ## Testing Validators
 ## Testing Features
