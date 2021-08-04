@@ -148,5 +148,23 @@ The task was edited successfully and the update appeared on both profiles of eac
 #### Result:
 Pass.
 
+### Test Case 9 (B)
+
+#### Case:
+_I would like to edit entitlements of general users (or own admin account) based on their position, bonus and salary._
+#### Procedure:
+* log in to an existing admin account.
+* locate the 'Options' drop-down button in the 'my account' section of the users profile page.
+* Select the 'Edit entitlement' button.
+* Input the email address of the target user.
+* Complete the edit of relevant input fields for position, bonus or salary.
+* Select the 'update' button to save the edit.
+#### Expected outcome:
+The employees entitlement will be edited and the information will appear on the right side of their profile page. (must create and log in to the target users account to view)
+#### Actual Outcome:
+The users entitlements were successfully updated appeared on their profile page.
+#### Result:
+Pass.
+
 ## Testing Validators
 ## Testing Features
