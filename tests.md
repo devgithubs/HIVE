@@ -131,5 +131,22 @@ The task was created successfully and appeared on both profiles of both users.
 #### Result:
 Pass.
 
+### Test Case 8 (B)
+
+#### Case:
+_I would like to edit tasks assigned to general users._
+#### Procedure:
+* log in to an existing admin account.
+* locate the specific task in the 'current tasks' section.
+* Select the 'Edit' button.
+* Complete the edit of relevant input fields.
+* Select the Edit button to save the change.
+#### Expected outcome:
+The task will be edited and will appear in the 'current tasks' section of the user who created it and the user who it is assigned to.
+#### Actual Outcome:
+The task was edited successfully and the update appeared on both profiles of each user.
+#### Result:
+Pass.
+
 ## Testing Validators
 ## Testing Features
