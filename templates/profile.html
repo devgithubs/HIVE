@@ -8,9 +8,12 @@
         <div class="container navbar-right">
             <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
             <ul class="navbar-right">
-              {% if session.user %}
+              {% if session["user"] == is_admin %}
               <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
               <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
+              <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
+              {% elif session["user"] != is_admin %}
+              <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
               <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
               {% else %}
               <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
@@ -168,7 +171,6 @@
                     <li><a class="dropdown-item" href="{{ url_for('annual_leave', form=form, hol_id=cur_hols._id) }}">Book Annual Leave</a></li>
 
                     {% if return_edit.is_admin == "on" %}
-                    <li><a class="dropdown-item" href="#">Add Entitlements</a></li>
                     <li><a class="dropdown-item" href="{{ url_for('edit_entitlements', entitlement_id=new_entitlements._id) }}">Edit Entitlements</a></li>
                     {% endif %}
                   </ul>
