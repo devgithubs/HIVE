@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="col-md-12 p-3">                                           
                                             <input class="form-control is-invalid" id="inputAddress" minlength="1" maxlength="30"
-                                                pattern="^[a-zA-Z0-9]{1,15}$" name="inputAddress" placeholder="Address" value="{{ return_edit.address }}">
+                                                pattern="^[a-zA-Z0-9- ]{1,15}$" name="inputAddress" placeholder="Address" value="{{ return_edit.address }}">
                                             <div class="invalid-feedback">
                                                 Please enter a Address.
                                             </div>
@@ -90,14 +90,14 @@
                                         <div class="row mb-3 p-3">
                                             <div class="col-md-4">                                               
                                                 <input class="form-control is-invalid" id="inputCity" minlength="1" maxlength="25"
-                                                    pattern="^[a-zA-Z0-9]{1,25}$" name="inputCity" placeholder="City" value="{{ return_edit.city }}">
+                                                    pattern="^[a-zA-Z0-9- ]{1,25}$" name="inputCity" placeholder="City" value="{{ return_edit.city }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a City.
                                                 </div>
                                             </div>
                                             <div class="col-md-4">                                               
                                                 <input class="form-control is-invalid" id="inputCountry" minlength="1" maxlength="30"
-                                                    pattern="^[a-zA-Z0-9]{1,30}$" name="inputCountry" placeholder="Country" value="{{ return_edit.country }}">
+                                                    pattern="^[a-zA-Z0-9- ]{1,30}$" name="inputCountry" placeholder="Country" value="{{ return_edit.country }}">
                                                 <div class="invalid-feedback">
                                                     Please enter a Country.
                                                 </div>
