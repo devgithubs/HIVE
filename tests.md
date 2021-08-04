@@ -121,11 +121,13 @@ Pass.
 _I would like to assign tasks to general users._
 #### Procedure:
 * log in to an existing admin account.
-
+* Navigate to the 'Add Task' button on the navbar.
+* Complete task for with relevant details.
+* Assign the task to a specific user via their email address in the last input field.
 #### Expected outcome:
-
+The task will be created and will appear in the 'current tasks' section of the user who created it and the user who it is assigned to.
 #### Actual Outcome:
-
+The task was created successfully and appeared on both profiles of both users.
 #### Result:
 Pass.
 
