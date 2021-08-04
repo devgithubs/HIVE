@@ -237,6 +237,10 @@ The SECRET_KEY is set by the user and not committed to source control.
 * While in GitHub select (https://github.com/devgithubs/HIVE/)
 * In the top right-hand side of the page select 'Fork'
 
+## Testing
+
+Project testing can be found here: [Tests](https://github.com/devgithubs/HIVE/blob/master/tests.md)
+
 ## Credits
 
 #### Images
