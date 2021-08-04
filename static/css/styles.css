@@ -76,7 +76,7 @@ body {
 }
 
 #button li {
-  display: block;
+  display: inline-block;
   list-style: none;
 }
 
