@@ -309,30 +309,6 @@ def annual_leave(hol_id):
     return render_template(
         'annual_leave.html', form=form, cur_hols=cur_hols)
 
-
-# @app.route("/add_entitlements", methods=["GET", "POST"])
-# def add_entitlements():
-#     if request.method == "POST":
-#         user_entitled = mongo.db.users.find_one(
-#             {"email": request.form.get("inputEmail").lower()})
-
-#         if user_entitled:
-#             entitlement = {
-#                 "email": request.form.get("inputEmail").lower(),
-#                 "title": request.form.get("inputTitle").lower(),
-#                 "salary": request.form.get("inputSalary").lower(),
-#                 "holidays": request.form.get("inputHolidays").lower(),
-#                 "bonus": request.form.get("inputBonus").lower()
-#             }
-#             mongo.db.position.insert_one(entitlement)
-#             print("the session user is", session["user"])
-#             return redirect(url_for("profile", username=session["user"]))
-
-#     entitlements = mongo.db.position.find_one({"_id": session["user"]})
-#     print(entitlements)
-#     return render_template("add_entitlements.html", entitlements=entitlements)
-
-
 @app.route("/edit_entitlements/<entitlement_id>", methods=["GET", "POST"])
 def edit_entitlements(entitlement_id):
     if request.method == "POST":
@@ -364,5 +340,3 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-
-
