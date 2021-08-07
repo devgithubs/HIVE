@@ -166,5 +166,31 @@ The users entitlements were successfully updated appeared on their profile page.
 #### Result:
 Pass.
 
-## Testing Validators
+## Testing Validators`
+
+## Bugs/Issues
+
+Even though I had enabled lower level security Apps to interact with my Google mail account, when I attempted to use an email in the input field I got the following error:
+```
+534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbts\n5.7.14 y2ku2-8KrWsn_dAUhnkssuTuESwaeG-DNn9hWBpsSpJCmVL ZhH24jzJfd-5bHUdh993dJ7\n5.7.14 a5LsAOJrheyT0cRXIhMSbycqvMAC7sNrizO5qU_6iDescJcQa-QqUUCFVH7IZoWF9uXyrv\n5.7.14 HC9XzAW-pBwgUjV4i_ts8CNhB_yZf2JHOi-wl6gZ9jwAiYLWx DPe7epI> Please log\n5.7.14 in via your web browser and then try again.\n5.7.14 Learn more at\n5.7.14 https://support.google.com/mail/answer/78754 y5sm3059043 9pge.49 - gsmtp
+```
+The error was appearing every time I attempted to enter an email into the input field that triggers the auto email from flask.
+
+And an email was sent to the email address I used to set up the Flask mail connection.
+
+ _"Sign-in attempt was blocked"_
+
+After some investigation, I found that the following steps needed to be taken:
+
+* Checking allow low secure apps in Google settings (it was already on, tried turing it off and back on)
+* Trying the unlock captcha link: https://accounts.google.com/DisplayUnlockCaptcha
+
+This second step worked for me, I:
+* Signed out of the Google account associated with the Flask mail function
+* Selected the DisplayUnlockCaptcha link
+* Signed back into the account
+* Re-ran my python script
+
+I then inserted my test email account in the Hive website input field. The auto generated email was sent to this address without issue.
+
 ## Testing Features
