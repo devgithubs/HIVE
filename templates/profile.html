@@ -7,20 +7,20 @@
     <nav class="navbar navbar-light bg-light static-top">
         <div class="container navbar-right">
             <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
-            <ul class="navbar-right">
-              {% if session["user"] == is_admin %}
-              <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
-              <a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a>
-              <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
+            <ul id="button" class="navbar-right">
+              {% if session.user %}
+              <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+              <li><a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a></li>
+              <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
               {% elif session["user"] != is_admin %}
-              <a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
-              <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
+              <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+              <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
               {% else %}
-              <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
-              <a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a>
-              <a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a>
+              <li><a class="btn btn-primary" href="{{ url_for('register') }}">Register</a></li>
+              <li><a class="btn btn-primary" href="{{ url_for('login') }}">Log In</a></li>
+              <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
               {% endif %}
-            </ul>
+          </ul>
         </div>
     </nav>
 

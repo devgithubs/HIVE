@@ -6,7 +6,7 @@
         <div class="container navbar-right">
             <a class="navbar-brand" href="{{ url_for('index') }}">HIVE</a>
                 <ul id="button" class="navbar-right">
-                    {% if session["user"] == is_admin %}
+                    {% if session.user %}
                     <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a></li>
                     <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
