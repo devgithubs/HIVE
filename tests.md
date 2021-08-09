@@ -166,7 +166,17 @@ The users entitlements were successfully updated appeared on their profile page.
 #### Result:
 Pass.
 
-## Testing Validators`
+## Testing Validators
+
+### HTML
+
+https://validator.w3.org/
+
+| Page | errors/warnings | Pass |
+| index.HTML | None | Yes |
+| register.HTML | None | Yes |
+| login.HTML | None | Yes |
+| info.HTML | None | Yes |
 
 ## Bugs/Issues
 
