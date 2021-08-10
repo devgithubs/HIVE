@@ -282,7 +282,7 @@ def info_contact():
 # @app.route("/annual_leave", defaults={'hol_id': None})
 @app.route("/annual_leave/<hol_id>", methods=["GET", "POST"])
 def annual_leave(hol_id):
-    form = DateForm()
+    form = DateForm(meta={'csrf': False})
     if request.method == "POST":
         get_hols = mongo.db.position.find_one({"email": session["user"]})
         print(get_hols)
