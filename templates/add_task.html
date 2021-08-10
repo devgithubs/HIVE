@@ -37,7 +37,7 @@
  
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
-            <main>
+            
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
@@ -61,7 +61,7 @@
                                                 name="task_name" minlength="1" maxlength="50" required/>
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control" type="text" id="task_description" rows="5"
+                                            <input class="form-control" type="text" id="task_description" 
                                                 minlength="1" maxlength="200" name="task_description"
                                                 placeholder="Description" required/>
                                         </div>
@@ -83,7 +83,7 @@
                                         <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
                                             <div class="in-line">
                                             <a class="btn btn-danger" href="{{ url_for('profile', username=session['user']) }}">Cancel  <i class="bi bi-x-lg"></i></a>
-                                            <button class="btn btn-primary btn-block" type="submit">Create  <i class="bi bi-check-lg"></i></button></i></div>
+                                            <button class="btn btn-primary btn-block" type="submit">Create  <i class="bi bi-check-lg"></i></button></div>
                                         </div>
                                     </form>
                                 </div>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-            </main>
+            
         </div>
         <footer class="footer fixed-bottom bg-light">
             <div class="container">

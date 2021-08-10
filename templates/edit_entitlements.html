@@ -48,28 +48,28 @@
                                             <div class="col-md-6">                                             
                                                 <input class="form-control" type="email" name="inputEmail" value="{{ new_entitlements.email }}" placeholder="Users Email" minlength="1"
                                                 maxlength="30" required/>
-                                                <label for="inputEmail" class="form-label">Email:</label>
+                                                
                                             </div>
                                             <div class="col-md-6">                                             
-                                                <input class="form-control" type="number" name="inputSalary" value="{{ new_entitlements.salary }}" placeholder="Salary e.g. (40,000)" minlength="1"
-                                                maxlength="10" pattern="^[0-9]{1,10}$" required/>
-                                                <label for="inputSalary" class="form-label">Salary:</label>
+                                                <input class="form-control" type="number" name="inputSalary" value="{{ new_entitlements.salary }}" placeholder="Salary e.g. (40,000)" min="1"
+                                                max="10" pattern="^[0-9]{1,10}$" required/>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-12 p-1">
                                                 <input class="form-control" type="text" name="inputTitle" value="{{ new_entitlements.title | title}}" placeholder="Job Title" minlength="1"
                                                 maxlength="100" pattern="^[a-zA-Z- ]{1,100}$" required/>
-                                                <label for="inputTitle" class="form-label">Title:</label>
+                                                
                                         </div>
                                         <div class="col-md-12 p-1">
-                                            <input class="form-control" type="number" name="inputHolidays" value="{{ new_entitlements.holidays }}" placeholder="Number of Holiday Day's" minlength="1"
-                                            maxlength="2" pattern="^[0-9]{1,2}$" required/>
-                                            <label for="inputHolidays" class="form-label">Holidays:</label>
+                                            <input class="form-control" type="number" name="inputHolidays" value="{{ new_entitlements.holidays }}" placeholder="Number of Holiday Day's" min="1"
+                                            max="2" pattern="^[0-9]{1,2}$" required/>
+                                            
                                         </div>
                                         <div class="col-md-12 p-1">
-                                            <input class="form-control" type="number" name="inputBonus" value="{{ new_entitlements.bonus }}" placeholder="Bonus e.g. (2,000)" minlength="1"
-                                            maxlength="10" pattern="^[0-9]{1,10}$" required/>
-                                            <label for="inputBonus" class="form-label">Bonus:</label>
+                                            <input class="form-control" type="number" name="inputBonus" value="{{ new_entitlements.bonus }}" placeholder="Bonus e.g. (2,000)" min="1"
+                                            max="10" pattern="^[0-9]{1,10}$" required/>
+                                            
                                         </div>
                                         <div class="col-md-12 p-1">
                                             <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Update</button></div>
