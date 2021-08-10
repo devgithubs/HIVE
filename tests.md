@@ -177,6 +177,10 @@ https://validator.w3.org/
 | register.HTML | None | Yes |
 | login.HTML | None | Yes |
 | info.HTML | None | Yes |
+| update_profile.HTML | None | Yes |
+| add_task.HTML | None | Yes |
+| annual_leave.HTML | None | Yes |
+| edit_entitlements.HTML | None | Yes |
 
 ## Bugs/Issues
 
