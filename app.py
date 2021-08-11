@@ -15,38 +15,44 @@ if os.path.exists("env.py"):
     import env
 
 
-# create instance of Flask 
+# create instance of Flask
 app = Flask(__name__)
 
 
-# create object of class 
+# create object of class
 class DateForm(FlaskForm):
-    startdate = DateField('Start Date', format='%Y-%m-%d', validators=(validators.DataRequired(),))
-    enddate = DateField('End Date', format='%Y-%m-%d', validators=(validators.DataRequired(),))
+    startdate = DateField('Start Date', format='%Y-%m-%d',
+                          validators=(validators.DataRequired(),))
+    enddate = DateField('End Date', format='%Y-%m-%d',
+                        validators=(validators.DataRequired(),))
     submit = SubmitField('Submit')
 
 
-# additional configuration 
-app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")# grabs DB name
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI") # connection string
-app.secret_key = os.environ.get("SECRET_KEY") # required for flask security functionality
+# additional configuration
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")  # grabs DB name
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")  # connection string
+app.secret_key = os.environ.get("SECRET_KEY")  # required for flask security
+
 
 # create instance of pymongo and pass it the flask app
 mongo = PyMongo(app)
 
+
+# route for main index page of app
 @app.route("/")
 @app.route("/index")
 def index():
     return render_template("index.html")
 
 
+# route for registration page of app
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         is_admin = "on" if request.form.get("is_admin") else "off"
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("inputEmail").lower()})
-        
+
         if existing_user:
             flash("User already exists")
             return redirect(url_for("register"))
@@ -74,31 +80,24 @@ def register():
         mongo.db.users.insert_one(register)
         mongo.db.position.insert_one(ent_base)
         session["user"] = request.form.get("inputEmail")
-        #flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
-    # ents_base = mongo.db.position.find_one({"_id": session["user"]})
     return render_template("register.html")
 
 
+# route for edit profile page of app
 @app.route("/update_profile/<id>", methods=["GET", "POST"])
 def update_profile(id):
     if request.method == "POST":
         is_admin = "on" if request.form.get("is_admin") else "off"
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("inputEmail").lower()})
-        # print(existing_user)
 
-        # record=mongo.db.users.find_one({"email": session["user"]})
-        record = mongo.db.users.find_one(
-            {"email": request.form.get("inputEmail").lower()})
-        for key, value in record.items():
-            # if key and value is not None:
-            print(key)
-            print(value)
-        
+        # record = mongo.db.users.find_one(
+        #     {"email": request.form.get("inputEmail").lower()})
+
         if existing_user:
-            
+
             edited = {
                 "email": request.form.get("inputEmail").lower(),
                 "password": generate_password_hash(
@@ -114,12 +113,13 @@ def update_profile(id):
             }
             mongo.db.users.update({"_id": ObjectId(id)}, edited)
             flash("Update Successful!")
-            # print(f'the {record} is')
+
     return_edit = mongo.db.users.find_one({"_id": ObjectId(id)})
     return render_template(
         "update_profile.html", return_edit=return_edit)
 
 
+# route for login page of app
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -128,10 +128,11 @@ def login():
 
         if existing_user:
             if check_password_hash(
-                existing_user["password"], request.form.get("inputPassword")):
-                    session["user"] = request.form.get("inputEmail").lower()
-                    return redirect(
-                        url_for("profile", username=session["user"]))
+                                    existing_user["password"],
+                                    request.form.get("inputPassword")):
+                session["user"] = request.form.get("inputEmail").lower()
+                return redirect(
+                    url_for("profile", username=session["user"]))
 
             else:
                 flash("Incorrect Username and/or Password")
@@ -144,24 +145,21 @@ def login():
     return render_template("login.html")
 
 
+# route for profile page of app
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     cur_hols = mongo.db.position.find_one({"email": session["user"]})
-    # entitlements = mongo.db.position.find_one({"email": session["user"]})
     new_entitlements = mongo.db.position.find_one({"email": session["user"]})
     tasks = list(mongo.db.tasks.find())
     ents_base = mongo.db.position.find_one({"email": session["user"]})
     return_edit = mongo.db.users.find_one(
         {"email": session["user"]})
-    # for task in tasks2:
-    #     print(f"TASK: {task}")
-    print(f'USER: {ents_base}')
+
     if session["user"]:
         return render_template(
             "profile.html",
             tasks=tasks,
             return_edit=return_edit,
-            # entitlements=entitlements,
             cur_hols=cur_hols,
             new_entitlements=new_entitlements,
             ents_base=ents_base
@@ -170,6 +168,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# route for logout function of app
 @app.route("/logout")
 def logout():
     flash("You have successfully logged out")
@@ -177,6 +176,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# route for add task page and function of app
 @app.route("/add_task", methods=["GET", "POST"])
 def add_task():
     if request.method == "POST":
@@ -198,6 +198,7 @@ def add_task():
     return render_template("add_task.html", categories=categories)
 
 
+# route for edit task fucntion and page of app
 @app.route("/edit_task/<task_id>", methods=["GET", "POST"])
 def edit_task(task_id):
     if request.method == "POST":
@@ -219,17 +220,20 @@ def edit_task(task_id):
     return render_template("edit_task.html", task=task, categories=categories)
 
 
+# route for delete task function of app
 @app.route("/delete_task/<task_id>")
 def delete_task(task_id):
     mongo.db.tasks.remove({"_id": ObjectId(task_id)})
     return redirect(url_for("profile", username=session["user"]))
 
 
+# route for info page of app
 @app.route("/info")
 def info():
     return render_template("info.html")
 
 
+# getting and setting the vars for the mail settings
 mail_settings = {
  "MAIL_SERVER": os.environ.get(
      'MAIL_SERVER'), "MAIL_PORT": os.environ.get('MAIL_PORT'),
@@ -241,10 +245,13 @@ mail_settings = {
 }
 
 
+# updating the mail settings vars to app config
 app.config.update(mail_settings)
+# creating instance of Mail and passing the app
 mail = Mail(app)
 
 
+# route for handling mail on main index page of app
 @app.route("/index", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
@@ -252,15 +259,19 @@ def contact():
             msg = Message("Hello from HIVE")
             msg.sender = os.environ.get('MAIL_USERNAME')
             msg.recipients = [request.form.get("email")]
-            # message = request.form.get("message")
             msg.body = f"Email From: {msg.sender}"
-            msg.html = '<b>Hello, thanks for signing up!</b> welcome to the HIVE, check us out: <a href="https://hive-human-resources.herokuapp.com/info">HIVE</a>.'
+            msg.html = '<b>Hello, thanks for signing up!</b> \
+            welcome to the HIVE, check us out: \
+            <a href="https://hive-human-resources.herokuapp.com/info"> \
+            HIVE</a>.'
             mail.send(msg)
             flash("Email sent!")
             return redirect(url_for('index'))
-            
+
     return render_template("index.html")
 
+
+# route for handling mail on info page of app
 @app.route("/info", methods=["GET", "POST"])
 def info_contact():
     if request.method == "POST":
@@ -268,18 +279,19 @@ def info_contact():
             msg = Message("Hello from HIVE")
             msg.sender = os.environ.get('MAIL_USERNAME')
             msg.recipients = [request.form.get("email")]
-            # message = request.form.get("message")
             msg.body = f"Email From: {msg.sender}"
-            msg.html = '<b>Hello, thanks for signing up!</b> welcome to the HIVE, check us out: <a href="https://hive-human-resources.herokuapp.com/info">HIVE</a>.'
+            msg.html = '<b>Hello, thanks for signing up!</b> \
+            welcome to the HIVE, check us out: \
+            <a href="https://hive-human-resources.herokuapp.com/info"> \
+            HIVE</a>.'
             mail.send(msg)
             flash("Email sent!")
             return redirect(url_for('info'))
-            
+
     return render_template("info.html")
 
 
-# @app.route("/annual_leave/<hol_id>/<username>", methods=["GET", "POST"])
-# @app.route("/annual_leave", defaults={'hol_id': None})
+# route for handling annual leave page of app
 @app.route("/annual_leave/<hol_id>", methods=["GET", "POST"])
 def annual_leave(hol_id):
     form = DateForm(meta={'csrf': False})
@@ -288,10 +300,11 @@ def annual_leave(hol_id):
         print(get_hols)
         if get_hols is None:
             print("None")
-            
+
         elif int(get_hols["holidays"]) <= 0:
             flash(
-                "You have no Holidays available to take, contact your HR department.")        
+                "You have no Holidays available to take, \
+                 contact your HR department.")
         elif form.validate_on_submit():
             session['startdate'] = form.startdate.data
             session['enddate'] = form.enddate.data
@@ -303,12 +316,14 @@ def annual_leave(hol_id):
             hol_update = {"$set": {"holidays": new_hols}}
             mongo.db.position.update_one({"_id": ObjectId(hol_id)}, hol_update)
             flash(f"You have booked {delta} day(s) off!")
-                              
+
     cur_hols = mongo.db.position.find_one({"_id": ObjectId(hol_id)})
     print(cur_hols["email"])
     return render_template(
         'annual_leave.html', form=form, cur_hols=cur_hols)
 
+
+# route for handling edit entitlements page and function
 @app.route("/edit_entitlements/<entitlement_id>", methods=["GET", "POST"])
 def edit_entitlements(entitlement_id):
     if request.method == "POST":
