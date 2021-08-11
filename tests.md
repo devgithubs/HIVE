@@ -173,6 +173,7 @@ Pass.
 https://validator.w3.org/
 
 | Page | errors/warnings | Pass |
+|------|-----------------|------|
 | index.HTML | None | Yes |
 | register.HTML | None | Yes |
 | login.HTML | None | Yes |
@@ -181,6 +182,15 @@ https://validator.w3.org/
 | add_task.HTML | None | Yes |
 | annual_leave.HTML | None | Yes |
 | edit_entitlements.HTML | None | Yes |
+
+
+### Python
+
+PEP8 Validation.
+
+All linting errors were corrected to be fully PEP8 complient.
+
+A warning rermains in the console "env imported but unused" but these are in fact used, they are just concealed for security.
 
 ## Bugs/Issues
 
