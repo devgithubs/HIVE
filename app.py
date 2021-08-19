@@ -93,9 +93,6 @@ def update_profile(id):
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("inputEmail").lower()})
 
-        # record = mongo.db.users.find_one(
-        #     {"email": request.form.get("inputEmail").lower()})
-
         if existing_user:
 
             edited = {
@@ -348,6 +345,18 @@ def edit_entitlements(entitlement_id):
         {"_id": ObjectId(entitlement_id)})
     return render_template(
         "edit_entitlements.html", new_entitlements=new_entitlements, name=name)
+
+
+# route for error handling - URL was not found
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html'), 404
+
+
+# route for error handling - Internal server error
+@app.errorhandler(500)
+def server_error(error):
+    return render_template('500.html'), 500
 
 
 # tell the app where and when to run the app. IP & PORT Vars hidden in env.py
