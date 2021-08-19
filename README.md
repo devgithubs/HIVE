@@ -81,7 +81,7 @@ As a administrative user:
 
 <img src="static/assets/img/lpf1.PNG">
 
-* If the user is signed in they will see the below button group
+* If the user is signed in as an Admin they will see the below button group, otherwise they will see only 'Profile' and 'Learn More'
 
 <img src="static/assets/img/lpf2.PNG">
 
@@ -260,4 +260,4 @@ The images used throughout the website were sourced from (https://unsplash.com/)
 * Code Institute's Tim Nelson's mini project provided a lot of the inspiration for the creation of this site.
 
 #### Acknowledgments
-Special thanks you to Code Institute's tutor support team for their help throughout.
+Special thank you to Code Institute's tutor support team for their help throughout.
