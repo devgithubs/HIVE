@@ -26,10 +26,9 @@
                 <ul id="button" class="navbar-right">
                     {% if session.user %}
                     <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                      {% if session["user"] == is_admin %}
                     <li><a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a></li>
-                    <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
-                    {% elif session["user"] != is_admin %}
-                    <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                      {% endif %}
                     <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
                     {% else %}
                     <li><a class="btn btn-primary" href="{{ url_for('register') }}">Register</a></li>
@@ -69,7 +68,7 @@
             <div class="container px-5 my-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="../static/assets/img/dublin.jpg" alt="..." /></div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 p-3">
                         <h2 id="about" class="fw-bolder">Our founding</h2>
                         <p class="lead fw-normal text-muted mb-0">HIVE was founded by Arthur O'Leary in 2021 in his hometown of Dublin, Ireland.</p>
                     </div>
@@ -81,7 +80,7 @@
             <div class="container px-5 my-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="../static/assets/img/growth.jpg" alt="..." /></div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 p-3">
                         <h2 id="future" class="fw-bolder">Growth &amp; beyond</h2>
                         <p class="lead fw-normal text-muted mb-0">To usher in the organization of the future, Human Resources must adapt to the changing working environments Globally. HIVE seeks to enable workforce strategy and planning and be the Human Resource Management System that will positively affect employee performance.</p>
                     </div>
@@ -137,7 +136,7 @@
                 <div class="row gx-5 justify-content-center">
                     <!-- Pricing card free-->
                     <div class="col-lg-6 col-xl-4">
-                        <div class="card mb-5 mb-xl-0">
+                        <div class="card mb-5 mb-xl-0 h-100">
                             <div class="card-body p-5">
                                 <div class="small text-uppercase fw-bold text-muted">Free</div>
                                 <div class="mb-3">
@@ -176,7 +175,7 @@
                     </div>
                     <!-- Pricing card pro-->
                     <div class="col-lg-6 col-xl-4">
-                        <div class="card mb-5 mb-xl-0">
+                        <div class="card mb-5 mb-xl-0 h-100">
                             <div class="card-body p-5">
                                 <div class="small text-uppercase fw-bold">
                                     <i class="bi bi-star-fill text-warning"></i>
@@ -218,7 +217,7 @@
                     </div>
                     <!-- Pricing card enterprise-->
                     <div class="col-lg-6 col-xl-4">
-                        <div class="card">
+                        <div class="card h-100">
                             <div class="card-body p-5">
                                 <div class="small text-uppercase fw-bold text-muted">Enterprise</div>
                                 <div class="mb-3">

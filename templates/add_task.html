@@ -10,10 +10,9 @@
                 <ul id="button" class="navbar-right">
                     {% if session.user %}
                     <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                      {% if session["user"] == is_admin %}
                     <li><a class="btn btn-primary" href="{{ url_for('add_task') }}">Add Task</a></li>
-                    <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
-                    {% elif session["user"] != is_admin %}
-                    <li><a class="btn btn-primary" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                      {% endif %}
                     <li><a class="btn btn-primary" href="{{ url_for('info') }}">Learn More</a></li>
                     {% else %}
                     <li><a class="btn btn-primary" href="{{ url_for('register') }}">Register</a></li>
