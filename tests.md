@@ -166,6 +166,22 @@ The users entitlements were successfully updated appeared on their profile page.
 #### Result:
 Pass.
 
+### Test Case 10 - 404 error handling
+
+#### Case:
+_I would like to check that if the user navigates to a URL extension that does not exist on my website they will get an appropriate error message and be able to return safely to the homepage_
+#### Procedure:
+* Navigate to the HIVE website.
+* In the browser address bar modify the URL to a page that does not exist e.g. https://hive-human-resources.herokuapp.com/notfound
+
+#### Expected outcome:
+The website should return a 404 error page that informs the user that this page does not exist, and also provide navigation back to the homepage.
+#### Actual Outcome:
+The website returned the appropriate 404 error page with navigation back to the hompage.
+#### Result:
+Pass.
+
+
 ## Testing Validators
 
 ### HTML
@@ -216,5 +232,3 @@ This second step worked for me, I:
 * Re-ran my python script
 
 I then inserted my test email account in the Hive website input field. The auto generated email was sent to this address without issue.
-
-## Testing Features
