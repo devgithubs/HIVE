@@ -4,8 +4,8 @@
 <img src="static/assets/img/Mock_up.PNG">
 
 ## Objective
-This Website was created for the purpose of satisfying the criteria for the third Milestone Project (Python and Data Centric Development) as part of Code Institute's Full Stack Software Developer course.
-The project features a full-stack website that allows users manage a collective dataset centered around a Human Resource domain. The website was constructed using HTML, CSS, Python, Flask and MongoDB.
+This Website was created for the purpose of implementing my first ever fullstack website (Python and MongoDB Data Centric Development).
+The project allows users manage a collective dataset centered around a Human Resource domain. The website was constructed using HTML, CSS, Python, Flask, Jinja and MongoDB.
 
 ## UX & Design
 
@@ -136,13 +136,23 @@ The Profile page contains the richest amount of content and features on the webs
 
 #### Colours
 * The colour pallete of the website is mainly pale greys and blues to give a feeling of calm.
+
+Blue accents for buttons, icons and links using - #0d6efd
+
+<img src="static/assets/img/colourPalette.PNG">
+
+Light pale Grey to break up sections of content - #f8f9fa
+
 #### Typography
-* Use of the Roboto font throughout for a professional look. 
+* Use of the Roboto font throughout for a professional and modern look. 
 #### Images
 * Images included are of a business professional nature. To give a look of collaboration and synergy.  
+* All images were sourced from [Unsplash](https://unsplash.com/)
 
 ## Skeleton
 ### Wireframes
+
+The wireframes gave a guide for the layout of the website and certain elements have changed to fit the overall function, style and practicality of the website as it evolved.  
 
 * Landing page
 
