@@ -80,6 +80,8 @@ def register():
         mongo.db.users.insert_one(register)
         mongo.db.position.insert_one(ent_base)
         session["user"] = request.form.get("inputEmail")
+        if register["is_admin"] == "on":
+            session["admin"] = True
         return redirect(url_for("profile", username=session["user"]))
 
     return render_template("register.html")
@@ -122,12 +124,13 @@ def login():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("inputEmail").lower()})
-
         if existing_user:
             if check_password_hash(
                                     existing_user["password"],
                                     request.form.get("inputPassword")):
                 session["user"] = request.form.get("inputEmail").lower()
+                if existing_user["is_admin"] == "on":
+                    session["admin"] = True
                 return redirect(
                     url_for("profile", username=session["user"]))
 
@@ -169,7 +172,7 @@ def profile(username):
 @app.route("/logout")
 def logout():
     flash("You have successfully logged out")
-    session.pop("user")
+    session.clear()
     return redirect(url_for("login"))
 
 
