@@ -85,6 +85,18 @@ As a administrative user:
 
 <img src="static/assets/img/lpf2.PNG">
 
+* Flask Mail was implemented to send an automated email to any user email entered into the email field.
+
+<img src="static/assets/img/emailinput.PNG">
+
+* Temp Mail was used to generate a temporary email address and inbox to test this feature.
+
+<img src="static/assets/img/tempemail.PNG">
+
+* The email will then be sent to your inbox with accompanying message.
+
+<img src="static/assets/img/email.PNG">
+
 #### Registration page features
 The registration page features a simple to understand form that collects the majority of the users details that are then displayed on their profile page.
 * Importantly there is a switch that changes the type of account between general user and admin level access.
@@ -129,8 +141,15 @@ The Profile page contains the richest amount of content and features on the webs
 
 <img src="static/assets/img/optionsadmin.PNG">
 
+* The Admin completes this form with the relevant data to poulate the users Salary, Bonus, Position and Holiday quantity.
+
+<img src="static/assets/img/addentsform.PNG">
+
 * Users have the option of booking annual leave days that will be deducted from their total (displayed on their profile). 
-* To access this booking from they go via 'Book Annual Leave' in 'Options' same as above.
+* To access this booking form they go via 'Book Annual Leave' in 'Options' same as above.
+
+<img src="static/assets/img/annualLeave.PNG">
+
 
 ### Design Features
 
