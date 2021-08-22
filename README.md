@@ -260,5 +260,5 @@ The images used throughout the website were sourced from (https://unsplash.com/)
 * Code Institute's Tim Nelson's mini project provided a lot of the inspiration for the creation of this site.
 
 #### Acknowledgments
-Special thank you to Code Institute's tutor support team for their help throughout.
-Thank you to mentor master [Jedi](https://github.com/D0nni387) :sunglasses:
+* Special thank you to Code Institute's tutor support team for their help throughout.
+* Thank you to mentor master [Jedi](https://github.com/D0nni387) :sunglasses:
