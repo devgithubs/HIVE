@@ -261,3 +261,4 @@ The images used throughout the website were sourced from (https://unsplash.com/)
 
 #### Acknowledgments
 Special thank you to Code Institute's tutor support team for their help throughout.
+Thank you to mentor master [Jedi](https://github.com/D0nni387) :sunglasses:
