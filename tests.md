@@ -232,3 +232,7 @@ This second step worked for me, I:
 * Re-ran my python script
 
 I then inserted my test email account in the Hive website input field. The auto generated email was sent to this address without issue.
+
+## General Observation
+
+I noticed that in some instances the Heroku App must be given a minute to fire up before registering an account as there can be minor timing issues with the creation of an account. 
