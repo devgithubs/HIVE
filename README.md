@@ -119,6 +119,9 @@ The Profile page contains the richest amount of content and features on the webs
 
 * There is a button for the user to log out of their account safely.
 * There is a button for the user to edit their profile details.
+
+<img src="static/assets/img/editprofile.PNG">
+
 * The main body of the profile page contains a variety of personal information about the person.
 
 <img src="static/assets/img/p2.PNG">
